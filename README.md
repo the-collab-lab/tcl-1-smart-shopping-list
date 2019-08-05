@@ -10,7 +10,7 @@ How it works is that you will enter items (e.g., “Greek yogurt” or “Paper 
 
 The app will work in many of the same ways as https://app.ineedtobuy.xyz with the exception that we will not be implementing barcode scanning (that feature would add a lot of scope to the project and in my experience wasn’t all that useful).
 
-## ↓↓↓ create-react-boilerplate ↓↓↓
+## ↓↓↓ create-react-app boilerplate ↓↓↓
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
