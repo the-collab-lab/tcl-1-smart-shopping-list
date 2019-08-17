@@ -1,7 +1,3 @@
-# Step 1: Fork this repo!
-
-This repo is meant to serve as the basis for individual team projects. As such, your team should fork it and work from the fork. Thanks!
-
 ## Overview
 
 The goal of this project is to create a “smart” shopping list app that learns your buying habits and helps you remember what you’re likely to need to buy on your next trip to the store.
