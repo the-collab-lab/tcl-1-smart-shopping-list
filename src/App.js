@@ -18,7 +18,6 @@ function App() {
         >
           Learn React
         </a>
-        <p>{process.env.REACT_APP_TCL_1_FIRESTORE_API_KEY}</p>
       </header>
     </div>
   );
