@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot on load 1`] = `
+<footer
+  className="footer"
+>
+  <a
+    href="/add-item"
+    onClick={[Function]}
+  >
+    <button
+      type="submit"
+    >
+      Add Item
+    </button>
+  </a>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    <button
+      type="submit"
+    >
+      My List
+    </button>
+  </a>
+</footer>
+`;

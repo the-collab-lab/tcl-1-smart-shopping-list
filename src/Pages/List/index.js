@@ -1,10 +1,14 @@
-import React, { Component } from "react";
-import { FirestoreCollection } from "react-firestore";
-import Loading from "./Loading";
+import React from 'react';
+import { FirestoreCollection } from 'react-firestore';
+import Loading from '../../Components/Loading';
+import Header from '../../Components/Header';
+import Footer from '../../Components/Footer';
 
-class ItemList extends Component {
-  render() {
-    return (
+const List = () => {
+  return (
+    <main className="pageOne">
+      <Header />
+
       <section>
         <FirestoreCollection
           // Specify the path to the collection you're pulling data from
@@ -28,9 +32,10 @@ class ItemList extends Component {
           }}
         />
       </section>
-    );
-  }
-}
 
-// Wrap this componenet in the higher order componenet withFirestore to directly access the database
-export default ItemList;
+      <Footer />
+    </main>
+  );
+};
+
+export default List;

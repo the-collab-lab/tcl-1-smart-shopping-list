@@ -1,13 +1,11 @@
-import React from "react";
-import AddItem from "./components/AddItem";
-import ItemList from "./components/ItemList";
+import React, { Fragment } from 'react';
+import Router from './Router';
 
 function App() {
   return (
-    <div>
-      <AddItem />
-      <ItemList />
-    </div>
+    <Fragment>
+      <Router />
+    </Fragment>
   );
 }
 

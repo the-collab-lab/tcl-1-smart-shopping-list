@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot on load 1`] = `
+Array [
+  <main
+    className="pageOne"
+  >
+    <header
+      className="header"
+    >
+      <h1
+        className="title"
+      >
+        iNeedToBuy
+      </h1>
+    </header>
+    <section>
+      <p>
+        Loading...
+      </p>
+    </section>
+    <footer
+      className="footer"
+    >
+      <a
+        href="/add-item"
+        onClick={[Function]}
+      >
+        <button
+          type="submit"
+        >
+          Add Item
+        </button>
+      </a>
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <button
+          type="submit"
+        >
+          My List
+        </button>
+      </a>
+    </footer>
+  </main>,
+  " ",
+]
+`;
