@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot on load 1`] = `
+<main
+  className="pageTwo"
+>
+  <header
+    className="header"
+  >
+    <h1
+      className="title"
+    >
+      iNeedToBuy
+    </h1>
+  </header>
+  <form
+    onSubmit={[Function]}
+  >
+    <label>
+      Add Item:
+      <input
+        id="name"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </label>
+    <button
+      onClick={[Function]}
+    >
+      Add item
+    </button>
+  </form>
+  <footer
+    className="footer"
+  >
+    <a
+      href="/add-item"
+      onClick={[Function]}
+    >
+      <button
+        type="submit"
+      >
+        Add Item
+      </button>
+    </a>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        type="submit"
+      >
+        My List
+      </button>
+    </a>
+  </footer>
+</main>
+`;
