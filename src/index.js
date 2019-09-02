@@ -4,13 +4,13 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { fb as firebase } from './lib/firebase.js';
 import { FirestoreProvider } from 'react-firestore';
-import App from './App';
+import Router from './appRouter';
 import './index.css';
 
 ReactDOM.render(
   <FirestoreProvider firebase={firebase}>
     <BrowserRouter>
-      <App />
+      <Router />
     </BrowserRouter>
   </FirestoreProvider>,
   document.getElementById('root')
