@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { withFirestore } from 'react-firestore';
-import Header from '../../buildingBlockComponents/headerComp';
-import Footer from '../../buildingBlockComponents/footerComp';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
 
 const AddItem = ({ firestore }) => {
   const [name, setName] = useState('');

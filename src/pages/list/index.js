@@ -1,8 +1,8 @@
 import React from 'react';
 import { FirestoreCollection } from 'react-firestore';
-import Loading from '../../buildingBlockComponents/loadingComp';
-import Header from '../../buildingBlockComponents/headerComp';
-import Footer from '../../buildingBlockComponents/footerComp';
+import Loading from '../../components/loading';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
 
 const List = () => {
   return (
