@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
-import List from './pageComponents/listPage';
-import AddItem from './pageComponents/addItemPage';
+import List from './pages/list';
+import AddItem from './pages/addItem';
 
 const Router = () => {
   return (
