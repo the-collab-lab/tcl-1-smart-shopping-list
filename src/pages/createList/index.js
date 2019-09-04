@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { withFirestore } from 'react-firestore';
 import Header from '../../components/header';
 import getToken from '../../lib/token';
+import { firestore } from 'firebase';
 
 const CreateList = ({ firestore }) => {
   const storeTokenInFirebase = token => {
@@ -18,6 +19,7 @@ const CreateList = ({ firestore }) => {
 
   const handleSubmit = event => {
     const token = getToken();
+    console.log(token);
     storeTokenInFirebase(token);
     storeTokenInLocalStorage(token);
   };
