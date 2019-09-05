@@ -6,7 +6,7 @@ import Footer from '../../components/footer';
 
 const List = () => {
   // Get the list token from localStorage the first time the component renders to avoid making the call to localStorage every time an item is added
-  const [token, setToken] = useState(localStorage.getItem('token'))
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   return (
     <main className="pageOne">
