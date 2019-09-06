@@ -24,7 +24,7 @@ it('snapshot on load', () => {
     <FirestoreProvider firebase={firebase}>
       <BrowserRouter>
         <App />
-      </BrowserRouter>{' '}
+      </BrowserRouter>
     </FirestoreProvider>
   );
   expect(tree.toJSON()).toMatchSnapshot();
