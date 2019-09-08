@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 import { FirestoreCollection } from 'react-firestore';
-import Loading from '../../components/loading';
-import Header from '../../components/header';
-import Footer from '../../components/footer';
+
+import {
+  ContentWrapper,
+  Footer,
+  Header,
+  Loading,
+  PageWrapper,
+  SmartLink,
+} from '../../components';
 
 const List = () => {
   // Get the list token from localStorage the first time the component renders to avoid making the call to localStorage every time an item is added
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token] = useState(localStorage.getItem('token'));
 
   return (
-    <main className="pageOne">
+    <PageWrapper>
       <Header />
 
-      <section>
+      <ContentWrapper>
         <FirestoreCollection
           // Specify the path to the collection you're pulling data from
           path="items"
@@ -27,18 +33,25 @@ const List = () => {
               <div>
                 <ul>
                   {data.map(item => (
-                    <li key={item.id}>{item.name}</li>
+                    <li key={item.id}>
+                      <SmartLink className="detail-link" routeTo="/item-detail">
+                        {item.name}
+                      </SmartLink>
+                    </li>
                   ))}
                 </ul>
               </div>
             );
           }}
         />
-      </section>
+      </ContentWrapper>
 
       <Footer />
-    </main>
+    </PageWrapper>
   );
 };
 
 export default List;
+
+List.propTypes = {};
+List.defaultProps = {};

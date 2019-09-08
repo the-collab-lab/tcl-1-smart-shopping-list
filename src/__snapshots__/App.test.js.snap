@@ -3,44 +3,64 @@
 exports[`snapshot on load 1`] = `
 Array [
   <main
-    className="pageOne"
+    className="css-vdsylo"
   >
     <header
-      className="header"
+      className="css-527nkd"
     >
-      <h1
-        className="title"
+      <a
+        className="css-nuywz6"
+        href="/"
+        onClick={[Function]}
+        visualstate="hidden"
       >
-        iNeedToBuy
-      </h1>
+        Go Back
+      </a>
+      <a
+        className="css-gq9b4g"
+        href="/"
+        onClick={[Function]}
+        visualstate="default"
+      >
+        <h1
+          className="css-r73csp"
+        >
+          iNeedToBuy
+        </h1>
+      </a>
+      <a
+        href="http://app.ineedtobuy.xyz/"
+        target="_blank"
+        visualstate="default"
+      >
+        See Example
+      </a>
     </header>
-    <section>
+    <section
+      className="css-1xpf03y"
+    >
       <p>
         Loading...
       </p>
     </section>
     <footer
-      className="footer"
+      className="footer css-1i3mvty"
     >
       <a
-        href="/add-item"
-        onClick={[Function]}
-      >
-        <button
-          type="submit"
-        >
-          Add Item
-        </button>
-      </a>
-      <a
+        className="css-gq9b4g"
         href="/"
         onClick={[Function]}
+        visualstate="default"
       >
-        <button
-          type="submit"
-        >
-          My List
-        </button>
+        My List
+      </a>
+      <a
+        className="css-gq9b4g"
+        href="/add-item"
+        onClick={[Function]}
+        visualstate="default"
+      >
+        Add Item
       </a>
     </footer>
   </main>,
