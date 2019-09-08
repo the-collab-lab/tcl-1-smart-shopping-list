@@ -1,28 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`snapshot on load 1`] = `
+exports[`confirm the two expected links are present 1`] = `
 <footer
-  className="footer"
+  className="footer css-1i3mvty"
 >
   <a
-    href="/add-item"
-    onClick={[Function]}
-  >
-    <button
-      type="submit"
-    >
-      Add Item
-    </button>
-  </a>
-  <a
+    className="css-gq9b4g"
     href="/"
     onClick={[Function]}
+    visualstate="default"
   >
-    <button
-      type="submit"
-    >
-      My List
-    </button>
+    My List
+  </a>
+  <a
+    className="css-gq9b4g"
+    href="/add-item"
+    onClick={[Function]}
+    visualstate="default"
+  >
+    Add Item
+  </a>
+</footer>
+`;
+
+exports[`snapshot on load 1`] = `
+<footer
+  className="footer css-1i3mvty"
+>
+  <a
+    className="css-gq9b4g"
+    href="/"
+    onClick={[Function]}
+    visualstate="default"
+  >
+    My List
+  </a>
+  <a
+    className="css-gq9b4g"
+    href="/add-item"
+    onClick={[Function]}
+    visualstate="default"
+  >
+    Add Item
   </a>
 </footer>
 `;
