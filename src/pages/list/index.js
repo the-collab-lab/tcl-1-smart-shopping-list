@@ -34,7 +34,10 @@ const List = () => {
                 <ul>
                   {data.map(item => (
                     <li key={item.id}>
-                      <SmartLink className="detail-link" routeTo="/item-detail">
+                      <SmartLink
+                        className="item-detail-link"
+                        routeTo="/item-detail"
+                      >
                         {item.name}
                       </SmartLink>
                     </li>

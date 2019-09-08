@@ -24,15 +24,18 @@ const StyledH1 = styled.h1`
 const Header = ({ showBackLink, whichRoute }) => (
   <StyledHeader className="header">
     <SmartLink
+      className="back-link"
       routeTo={whichRoute}
       visualState={showBackLink ? 'default' : 'hidden'}
     >
       Go Back
     </SmartLink>
-    <SmartLink>
+    <SmartLink className="title-link">
       <StyledH1>iNeedToBuy</StyledH1>
     </SmartLink>
-    <SmartLink routeTo="http://app.ineedtobuy.xyz/">See Example</SmartLink>
+    <SmartLink className="example-link" routeTo="http://app.ineedtobuy.xyz/">
+      See Example
+    </SmartLink>
   </StyledHeader>
 );
 

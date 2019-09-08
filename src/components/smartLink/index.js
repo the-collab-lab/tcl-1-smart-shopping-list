@@ -12,13 +12,16 @@ const StyledLink = styled(Link)`
     props.visualstate === 'hidden' ? 'hidden' : 'visible'};
 `;
 
-const SmartAnchor = ({ children, routeTo, visualstate }) => {
-  return (
-    <a href={routeTo} target="_blank" visualstate={visualstate}>
-      {children}
-    </a>
-  );
-};
+const SmartAnchor = ({ className, children, routeTo, visualstate }) => (
+  <a
+    className={className}
+    href={routeTo}
+    target="_blank"
+    visualstate={visualstate}
+  >
+    {children}
+  </a>
+);
 
 const StyledAnchor = styled(SmartAnchor)`
   pointer-events: ${props =>
@@ -29,15 +32,25 @@ const StyledAnchor = styled(SmartAnchor)`
     props.visualstate === 'hidden' ? 'hidden' : 'visible'};
 `;
 
-const SmartLink = ({ children, routeTo, visualState }) => {
+const SmartLink = ({ className, children, onClick, routeTo, visualState }) => {
   const isExternalLink = routeTo.indexOf('http') !== -1;
 
   return isExternalLink ? (
-    <StyledAnchor routeTo={routeTo} target="_blank" visualstate={visualState}>
+    <StyledAnchor
+      className={className}
+      routeTo={routeTo}
+      target="_blank"
+      visualstate={visualState}
+    >
       {children}
     </StyledAnchor>
   ) : (
-    <StyledLink to={routeTo} visualstate={visualState}>
+    <StyledLink
+      className={className}
+      to={routeTo}
+      onClick={onClick}
+      visualstate={visualState}
+    >
       {children}
     </StyledLink>
   );
@@ -46,6 +59,7 @@ const SmartLink = ({ children, routeTo, visualState }) => {
 export default SmartLink;
 
 SmartLink.propTypes = {
+  className: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
     .isRequired,
   visualState: PropTypes.oneOf(['default', 'disabled', 'hidden']),

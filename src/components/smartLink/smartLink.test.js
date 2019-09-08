@@ -8,7 +8,7 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <BrowserRouter>
-      <SmartLink>this is a smart link</SmartLink>
+      <SmartLink className="test-class">this is a smart link</SmartLink>
     </BrowserRouter>,
     div
   );
@@ -18,7 +18,7 @@ it('renders without crashing', () => {
 it('snapshot on load', () => {
   const tree = TestRenderer.create(
     <BrowserRouter>
-      <SmartLink>this is a smart link</SmartLink>
+      <SmartLink className="test-class">this is a smart link</SmartLink>
     </BrowserRouter>
   );
   expect(tree.toJSON()).toMatchSnapshot();
@@ -28,7 +28,7 @@ describe('test content values', () => {
   it('content is type string', () => {
     const tree = TestRenderer.create(
       <BrowserRouter>
-        <SmartLink>this is a smart link</SmartLink>
+        <SmartLink className="test-class">this is a smart link</SmartLink>
       </BrowserRouter>
     );
 
@@ -38,7 +38,7 @@ describe('test content values', () => {
   it('content is an html element', () => {
     const tree = TestRenderer.create(
       <BrowserRouter>
-        <SmartLink>
+        <SmartLink className="test-class">
           <h1>this is an h1 element</h1>
         </SmartLink>
       </BrowserRouter>
@@ -52,7 +52,7 @@ describe('test content values', () => {
 
     const tree = TestRenderer.create(
       <BrowserRouter>
-        <SmartLink>
+        <SmartLink className="test-class">
           <FakeComponent />
         </SmartLink>
       </BrowserRouter>
@@ -66,7 +66,9 @@ describe('test routeTo values', () => {
   it('routeTo is set to known route', () => {
     const tree = TestRenderer.create(
       <BrowserRouter>
-        <SmartLink routeTo="/add-item">this is a smart link</SmartLink>
+        <SmartLink className="test-class" routeTo="/add-item">
+          this is a smart link
+        </SmartLink>
       </BrowserRouter>
     );
 
@@ -76,7 +78,9 @@ describe('test routeTo values', () => {
   it('routeTo is set to unknown route', () => {
     const tree = TestRenderer.create(
       <BrowserRouter>
-        <SmartLink routeTo="/fake-link">this is a smart link</SmartLink>
+        <SmartLink className="test-class" routeTo="/fake-link">
+          this is a smart link
+        </SmartLink>
       </BrowserRouter>
     );
 
@@ -86,7 +90,9 @@ describe('test routeTo values', () => {
   it('routeTo is set to an external URL', () => {
     const tree = TestRenderer.create(
       <BrowserRouter>
-        <SmartLink routeTo="http://google.com">this is a smart link</SmartLink>
+        <SmartLink className="test-class" routeTo="http://google.com">
+          this is a smart link
+        </SmartLink>
       </BrowserRouter>
     );
 
@@ -96,7 +102,7 @@ describe('test routeTo values', () => {
   it('routeTo is not set', () => {
     const tree = TestRenderer.create(
       <BrowserRouter>
-        <SmartLink>this is a smart link</SmartLink>
+        <SmartLink className="test-class">this is a smart link</SmartLink>
       </BrowserRouter>
     );
 
@@ -108,7 +114,9 @@ describe('test visualState values', () => {
   it('visualState set to default', () => {
     const tree = TestRenderer.create(
       <BrowserRouter>
-        <SmartLink visualState="default">this is a smart link</SmartLink>
+        <SmartLink className="test-class" visualState="default">
+          this is a smart link
+        </SmartLink>
       </BrowserRouter>
     );
 
@@ -118,7 +126,9 @@ describe('test visualState values', () => {
   it('visualState set to hidden', () => {
     const tree = TestRenderer.create(
       <BrowserRouter>
-        <SmartLink visualState="hidden">this is a smart link</SmartLink>
+        <SmartLink className="test-class" visualState="hidden">
+          this is a smart link
+        </SmartLink>
       </BrowserRouter>
     );
 
@@ -128,7 +138,9 @@ describe('test visualState values', () => {
   it('visualState set to disabled', () => {
     const tree = TestRenderer.create(
       <BrowserRouter>
-        <SmartLink visualState="disabled">this is a smart link</SmartLink>
+        <SmartLink className="test-class" visualState="disabled">
+          this is a smart link
+        </SmartLink>
       </BrowserRouter>
     );
 
@@ -138,7 +150,7 @@ describe('test visualState values', () => {
   it('visualState is not set', () => {
     const tree = TestRenderer.create(
       <BrowserRouter>
-        <SmartLink>this is a smart link</SmartLink>
+        <SmartLink className="test-class">this is a smart link</SmartLink>
       </BrowserRouter>
     );
 
