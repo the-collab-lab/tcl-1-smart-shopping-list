@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot on load 1`] = `
+<main
+  className="css-vdsylo"
+>
+  <header
+    className="css-527nkd"
+  >
+    <a
+      className="css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      Go Back
+    </a>
+    <a
+      className="css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      <h1
+        className="css-r73csp"
+      >
+        iNeedToBuy
+      </h1>
+    </a>
+    <a
+      href="http://app.ineedtobuy.xyz/"
+      target="_blank"
+      visualstate="default"
+    >
+      See Example
+    </a>
+  </header>
+  <section
+    className="css-1xpf03y"
+  >
+    this is the item detail page, I know you selected a specific item, but we're not there yet. BUT this page **does** have a back button.
+  </section>
+  <footer
+    className="footer css-1i3mvty"
+  >
+    <a
+      className="css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      My List
+    </a>
+    <a
+      className="css-gq9b4g"
+      href="/add-item"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      Add Item
+    </a>
+  </footer>
+</main>
+`;
