@@ -11,7 +11,7 @@ describe('Generate list token', function() {
     // go to the create list page
     cy.visit('/create-list');
     // click the create shopping list button
-    cy.get('button').click();
+    cy.get('.create-list-link').click();
     // redirect to the list page
     cy.url().should('include', 'http://localhost:3000/');
   });
