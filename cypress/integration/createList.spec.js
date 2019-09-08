@@ -18,7 +18,7 @@ describe('Generate list token', function() {
 
   it('stores a token value in localStorage', function() {
     cy.visit('/create-list');
-    cy.get('button')
+    cy.get('.create-list-link')
       .click()
       .should(() => {
         expect(localStorage.getItem('token')).to.exist;
