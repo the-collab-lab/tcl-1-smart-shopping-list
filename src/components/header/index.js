@@ -22,7 +22,7 @@ const StyledH1 = styled.h1`
 `;
 
 const Header = ({ showBackLink, whichRoute }) => (
-  <StyledHeader>
+  <StyledHeader className="header">
     <SmartLink
       routeTo={whichRoute}
       visualState={showBackLink ? 'default' : 'hidden'}

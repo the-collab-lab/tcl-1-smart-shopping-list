@@ -12,7 +12,9 @@ const StyledContentWrapper = styled.section`
 `;
 
 const ContentWrapper = ({ children }) => (
-  <StyledContentWrapper>{children}</StyledContentWrapper>
+  <StyledContentWrapper className="content-wrapper">
+    {children}
+  </StyledContentWrapper>
 );
 
 export default ContentWrapper;

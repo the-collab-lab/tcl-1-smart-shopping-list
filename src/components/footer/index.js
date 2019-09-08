@@ -17,7 +17,7 @@ const StyledFooter = styled.footer`
 const Footer = () => (
   <StyledFooter className="footer">
     <SmartLink className="list-link">My List</SmartLink>
-    <SmartLink className="add-link" routeTo="/add-item">
+    <SmartLink className="add-item-link" routeTo="/add-item">
       Add Item
     </SmartLink>
   </StyledFooter>

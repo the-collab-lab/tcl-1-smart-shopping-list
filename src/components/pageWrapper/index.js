@@ -11,7 +11,7 @@ const StyledPageWrapper = styled.main`
 `;
 
 const PageWrapper = ({ children }) => (
-  <StyledPageWrapper>{children}</StyledPageWrapper>
+  <StyledPageWrapper className="page-wrapper">{children}</StyledPageWrapper>
 );
 
 export default PageWrapper;
