@@ -16,12 +16,24 @@ const SmartAnchor = ({ className, children, routeTo, visualstate }) => (
   <a
     className={className}
     href={routeTo}
-    target="_blank"
+    rel="no-referrer"
     visualstate={visualstate}
   >
     {children}
   </a>
 );
+
+SmartAnchor.propTypes = {
+  className: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+    .isRequired,
+  visualstate: PropTypes.oneOf(['default', 'disabled', 'hidden']),
+  routeTo: PropTypes.string.isRequired,
+};
+
+SmartAnchor.defaultProps = {
+  visualState: 'default',
+};
 
 const StyledAnchor = styled(SmartAnchor)`
   pointer-events: ${props =>
@@ -62,6 +74,7 @@ SmartLink.propTypes = {
   className: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
     .isRequired,
+  onClick: PropTypes.func,
   visualState: PropTypes.oneOf(['default', 'disabled', 'hidden']),
   routeTo: PropTypes.string,
 };

@@ -7,7 +7,7 @@ const ItemDetail = () => {
       <Header showBackLink={true} />
       <ContentWrapper>
         this is the item detail page, I know you selected a specific item, but
-        we're not there yet. BUT this page **does** have a back button.
+        we&apos;re not there yet. BUT this page **does** have a back button.
       </ContentWrapper>
       <Footer />
     </PageWrapper>

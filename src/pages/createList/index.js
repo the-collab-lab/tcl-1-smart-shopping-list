@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withFirestore } from 'react-firestore';
 import {
   ContentWrapper,
@@ -31,7 +32,9 @@ const CreateList = ({ firestore }) => {
       <Header />
       <ContentWrapper>
         <h2 className="welcomeTitle">Welcome to your smart shopping list!</h2>
-        <h3 className="tagline">Click 'Create Shopping Lists' to start.</h3>
+        <h3 className="tagline">
+          Click &quot;Create Shopping Lists&quot; to start.
+        </h3>
         <SmartLink
           className="create-list-link"
           routeTo="/"
@@ -45,3 +48,9 @@ const CreateList = ({ firestore }) => {
 };
 
 export default withFirestore(CreateList);
+
+CreateList.propTypes = {
+  firestore: PropTypes.shape({
+    collection: PropTypes.func,
+  }),
+};
