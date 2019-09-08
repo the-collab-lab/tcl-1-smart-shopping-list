@@ -2,7 +2,7 @@
 
 exports[`snapshot on load 1`] = `
 <a
-  className="css-gq9b4g"
+  className="test-class css-gq9b4g"
   href="/"
   onClick={[Function]}
   visualstate="default"
@@ -13,7 +13,7 @@ exports[`snapshot on load 1`] = `
 
 exports[`test content values content is a React element 1`] = `
 <a
-  className="css-gq9b4g"
+  className="test-class css-gq9b4g"
   href="/"
   onClick={[Function]}
   visualstate="default"
@@ -26,7 +26,7 @@ exports[`test content values content is a React element 1`] = `
 
 exports[`test content values content is an html element 1`] = `
 <a
-  className="css-gq9b4g"
+  className="test-class css-gq9b4g"
   href="/"
   onClick={[Function]}
   visualstate="default"
@@ -39,7 +39,7 @@ exports[`test content values content is an html element 1`] = `
 
 exports[`test content values content is type string 1`] = `
 <a
-  className="css-gq9b4g"
+  className="test-class css-gq9b4g"
   href="/"
   onClick={[Function]}
   visualstate="default"
@@ -50,7 +50,7 @@ exports[`test content values content is type string 1`] = `
 
 exports[`test routeTo values routeTo is not set 1`] = `
 <a
-  className="css-gq9b4g"
+  className="test-class css-gq9b4g"
   href="/"
   onClick={[Function]}
   visualstate="default"
@@ -61,6 +61,7 @@ exports[`test routeTo values routeTo is not set 1`] = `
 
 exports[`test routeTo values routeTo is set to an external URL 1`] = `
 <a
+  className="test-class css-gq9b4g"
   href="http://google.com"
   target="_blank"
   visualstate="default"
@@ -71,7 +72,7 @@ exports[`test routeTo values routeTo is set to an external URL 1`] = `
 
 exports[`test routeTo values routeTo is set to known route 1`] = `
 <a
-  className="css-gq9b4g"
+  className="test-class css-gq9b4g"
   href="/add-item"
   onClick={[Function]}
   visualstate="default"
@@ -82,7 +83,7 @@ exports[`test routeTo values routeTo is set to known route 1`] = `
 
 exports[`test routeTo values routeTo is set to unknown route 1`] = `
 <a
-  className="css-gq9b4g"
+  className="test-class css-gq9b4g"
   href="/fake-link"
   onClick={[Function]}
   visualstate="default"
@@ -93,7 +94,7 @@ exports[`test routeTo values routeTo is set to unknown route 1`] = `
 
 exports[`test visualState values visualState is not set 1`] = `
 <a
-  className="css-gq9b4g"
+  className="test-class css-gq9b4g"
   href="/"
   onClick={[Function]}
   visualstate="default"
@@ -104,7 +105,7 @@ exports[`test visualState values visualState is not set 1`] = `
 
 exports[`test visualState values visualState set to default 1`] = `
 <a
-  className="css-gq9b4g"
+  className="test-class css-gq9b4g"
   href="/"
   onClick={[Function]}
   visualstate="default"
@@ -115,7 +116,7 @@ exports[`test visualState values visualState set to default 1`] = `
 
 exports[`test visualState values visualState set to disabled 1`] = `
 <a
-  className="css-1k806u0"
+  className="test-class css-1k806u0"
   href="/"
   onClick={[Function]}
   visualstate="disabled"
@@ -126,7 +127,7 @@ exports[`test visualState values visualState set to disabled 1`] = `
 
 exports[`test visualState values visualState set to hidden 1`] = `
 <a
-  className="css-nuywz6"
+  className="test-class css-nuywz6"
   href="/"
   onClick={[Function]}
   visualstate="hidden"

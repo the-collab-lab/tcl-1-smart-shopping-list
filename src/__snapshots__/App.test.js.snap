@@ -3,13 +3,13 @@
 exports[`snapshot on load 1`] = `
 Array [
   <main
-    className="css-vdsylo"
+    className="page-wrapper css-vdsylo"
   >
     <header
-      className="css-527nkd"
+      className="header css-527nkd"
     >
       <a
-        className="css-nuywz6"
+        className="back-link css-nuywz6"
         href="/"
         onClick={[Function]}
         visualstate="hidden"
@@ -17,7 +17,7 @@ Array [
         Go Back
       </a>
       <a
-        className="css-gq9b4g"
+        className="title-link css-gq9b4g"
         href="/"
         onClick={[Function]}
         visualstate="default"
@@ -29,6 +29,7 @@ Array [
         </h1>
       </a>
       <a
+        className="example-link css-gq9b4g"
         href="http://app.ineedtobuy.xyz/"
         target="_blank"
         visualstate="default"
@@ -37,9 +38,11 @@ Array [
       </a>
     </header>
     <section
-      className="css-1xpf03y"
+      className="content-wrapper css-1xpf03y"
     >
-      <p>
+      <p
+        className="loading"
+      >
         Loading...
       </p>
     </section>
@@ -47,7 +50,7 @@ Array [
       className="footer css-1i3mvty"
     >
       <a
-        className="css-gq9b4g"
+        className="list-link css-gq9b4g"
         href="/"
         onClick={[Function]}
         visualstate="default"
@@ -55,7 +58,7 @@ Array [
         My List
       </a>
       <a
-        className="css-gq9b4g"
+        className="add-item-link css-gq9b4g"
         href="/add-item"
         onClick={[Function]}
         visualstate="default"

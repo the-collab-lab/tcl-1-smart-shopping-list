@@ -2,7 +2,7 @@
 
 exports[`snapshot on load 1`] = `
 <main
-  className="css-vdsylo"
+  className="page-wrapper css-vdsylo"
 >
   must have content
 </main>

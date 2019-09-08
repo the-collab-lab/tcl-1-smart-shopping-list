@@ -2,10 +2,10 @@
 
 exports[`different showBackLink values showBackLink === false 1`] = `
 <header
-  className="css-527nkd"
+  className="header css-527nkd"
 >
   <a
-    className="css-nuywz6"
+    className="back-link css-nuywz6"
     href="/"
     onClick={[Function]}
     visualstate="hidden"
@@ -13,7 +13,7 @@ exports[`different showBackLink values showBackLink === false 1`] = `
     Go Back
   </a>
   <a
-    className="css-gq9b4g"
+    className="title-link css-gq9b4g"
     href="/"
     onClick={[Function]}
     visualstate="default"
@@ -25,6 +25,7 @@ exports[`different showBackLink values showBackLink === false 1`] = `
     </h1>
   </a>
   <a
+    className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
     target="_blank"
     visualstate="default"
@@ -36,10 +37,10 @@ exports[`different showBackLink values showBackLink === false 1`] = `
 
 exports[`different showBackLink values showBackLink === true 1`] = `
 <header
-  className="css-527nkd"
+  className="header css-527nkd"
 >
   <a
-    className="css-gq9b4g"
+    className="back-link css-gq9b4g"
     href="/"
     onClick={[Function]}
     visualstate="default"
@@ -47,7 +48,7 @@ exports[`different showBackLink values showBackLink === true 1`] = `
     Go Back
   </a>
   <a
-    className="css-gq9b4g"
+    className="title-link css-gq9b4g"
     href="/"
     onClick={[Function]}
     visualstate="default"
@@ -59,6 +60,7 @@ exports[`different showBackLink values showBackLink === true 1`] = `
     </h1>
   </a>
   <a
+    className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
     target="_blank"
     visualstate="default"
@@ -70,10 +72,10 @@ exports[`different showBackLink values showBackLink === true 1`] = `
 
 exports[`different showBackLink values showBackLink not set 1`] = `
 <header
-  className="css-527nkd"
+  className="header css-527nkd"
 >
   <a
-    className="css-nuywz6"
+    className="back-link css-nuywz6"
     href="/"
     onClick={[Function]}
     visualstate="hidden"
@@ -81,7 +83,7 @@ exports[`different showBackLink values showBackLink not set 1`] = `
     Go Back
   </a>
   <a
-    className="css-gq9b4g"
+    className="title-link css-gq9b4g"
     href="/"
     onClick={[Function]}
     visualstate="default"
@@ -93,6 +95,7 @@ exports[`different showBackLink values showBackLink not set 1`] = `
     </h1>
   </a>
   <a
+    className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
     target="_blank"
     visualstate="default"
@@ -104,10 +107,10 @@ exports[`different showBackLink values showBackLink not set 1`] = `
 
 exports[`different whichRoute values whichRoute === "/" 1`] = `
 <header
-  className="css-527nkd"
+  className="header css-527nkd"
 >
   <a
-    className="css-nuywz6"
+    className="back-link css-nuywz6"
     href="/"
     onClick={[Function]}
     visualstate="hidden"
@@ -115,7 +118,7 @@ exports[`different whichRoute values whichRoute === "/" 1`] = `
     Go Back
   </a>
   <a
-    className="css-gq9b4g"
+    className="title-link css-gq9b4g"
     href="/"
     onClick={[Function]}
     visualstate="default"
@@ -127,6 +130,7 @@ exports[`different whichRoute values whichRoute === "/" 1`] = `
     </h1>
   </a>
   <a
+    className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
     target="_blank"
     visualstate="default"
@@ -138,10 +142,10 @@ exports[`different whichRoute values whichRoute === "/" 1`] = `
 
 exports[`different whichRoute values whichRoute === "/add-item" 1`] = `
 <header
-  className="css-527nkd"
+  className="header css-527nkd"
 >
   <a
-    className="css-nuywz6"
+    className="back-link css-nuywz6"
     href="/add-item"
     onClick={[Function]}
     visualstate="hidden"
@@ -149,7 +153,7 @@ exports[`different whichRoute values whichRoute === "/add-item" 1`] = `
     Go Back
   </a>
   <a
-    className="css-gq9b4g"
+    className="title-link css-gq9b4g"
     href="/"
     onClick={[Function]}
     visualstate="default"
@@ -161,6 +165,7 @@ exports[`different whichRoute values whichRoute === "/add-item" 1`] = `
     </h1>
   </a>
   <a
+    className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
     target="_blank"
     visualstate="default"
@@ -172,10 +177,10 @@ exports[`different whichRoute values whichRoute === "/add-item" 1`] = `
 
 exports[`different whichRoute values whichRoute not set 1`] = `
 <header
-  className="css-527nkd"
+  className="header css-527nkd"
 >
   <a
-    className="css-nuywz6"
+    className="back-link css-nuywz6"
     href="/"
     onClick={[Function]}
     visualstate="hidden"
@@ -183,7 +188,7 @@ exports[`different whichRoute values whichRoute not set 1`] = `
     Go Back
   </a>
   <a
-    className="css-gq9b4g"
+    className="title-link css-gq9b4g"
     href="/"
     onClick={[Function]}
     visualstate="default"
@@ -195,6 +200,7 @@ exports[`different whichRoute values whichRoute not set 1`] = `
     </h1>
   </a>
   <a
+    className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
     target="_blank"
     visualstate="default"
@@ -206,10 +212,10 @@ exports[`different whichRoute values whichRoute not set 1`] = `
 
 exports[`snapshot on load 1`] = `
 <header
-  className="css-527nkd"
+  className="header css-527nkd"
 >
   <a
-    className="css-nuywz6"
+    className="back-link css-nuywz6"
     href="/"
     onClick={[Function]}
     visualstate="hidden"
@@ -217,7 +223,7 @@ exports[`snapshot on load 1`] = `
     Go Back
   </a>
   <a
-    className="css-gq9b4g"
+    className="title-link css-gq9b4g"
     href="/"
     onClick={[Function]}
     visualstate="default"
@@ -229,6 +235,7 @@ exports[`snapshot on load 1`] = `
     </h1>
   </a>
   <a
+    className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
     target="_blank"
     visualstate="default"

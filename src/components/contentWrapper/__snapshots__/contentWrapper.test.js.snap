@@ -2,7 +2,7 @@
 
 exports[`snapshot on load 1`] = `
 <section
-  className="css-1xpf03y"
+  className="content-wrapper css-1xpf03y"
 >
   must have content
 </section>

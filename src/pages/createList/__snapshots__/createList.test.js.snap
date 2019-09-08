@@ -8,10 +8,10 @@ exports[`snapshot on load 1`] = `
     className="header css-527nkd"
   >
     <a
-      className="back-link css-gq9b4g"
+      className="back-link css-nuywz6"
       href="/"
       onClick={[Function]}
-      visualstate="default"
+      visualstate="hidden"
     >
       Go Back
     </a>
@@ -39,27 +39,24 @@ exports[`snapshot on load 1`] = `
   <section
     className="content-wrapper css-1xpf03y"
   >
-    this is the item detail page, I know you selected a specific item, but we're not there yet. BUT this page **does** have a back button.
-  </section>
-  <footer
-    className="footer css-1i3mvty"
-  >
+    <h2
+      className="welcomeTitle"
+    >
+      Welcome to your smart shopping list!
+    </h2>
+    <h3
+      className="tagline"
+    >
+      Click 'Create Shopping Lists' to start.
+    </h3>
     <a
-      className="list-link css-gq9b4g"
+      className="create-list-link css-gq9b4g"
       href="/"
       onClick={[Function]}
       visualstate="default"
     >
-      My List
+      Create Shopping List
     </a>
-    <a
-      className="add-item-link css-gq9b4g"
-      href="/add-item"
-      onClick={[Function]}
-      visualstate="default"
-    >
-      Add Item
-    </a>
-  </footer>
+  </section>
 </main>
 `;
