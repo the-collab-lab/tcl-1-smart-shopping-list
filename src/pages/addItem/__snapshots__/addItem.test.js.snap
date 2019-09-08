@@ -30,7 +30,7 @@ exports[`snapshot on load 1`] = `
     <a
       className="example-link css-gq9b4g"
       href="http://app.ineedtobuy.xyz/"
-      target="_blank"
+      rel="no-referrer"
       visualstate="default"
     >
       See Example

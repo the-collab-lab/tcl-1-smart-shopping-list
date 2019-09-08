@@ -27,7 +27,7 @@ exports[`different showBackLink values showBackLink === false 1`] = `
   <a
     className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
-    target="_blank"
+    rel="no-referrer"
     visualstate="default"
   >
     See Example
@@ -62,7 +62,7 @@ exports[`different showBackLink values showBackLink === true 1`] = `
   <a
     className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
-    target="_blank"
+    rel="no-referrer"
     visualstate="default"
   >
     See Example
@@ -97,7 +97,7 @@ exports[`different showBackLink values showBackLink not set 1`] = `
   <a
     className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
-    target="_blank"
+    rel="no-referrer"
     visualstate="default"
   >
     See Example
@@ -132,7 +132,7 @@ exports[`different whichRoute values whichRoute === "/" 1`] = `
   <a
     className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
-    target="_blank"
+    rel="no-referrer"
     visualstate="default"
   >
     See Example
@@ -167,7 +167,7 @@ exports[`different whichRoute values whichRoute === "/add-item" 1`] = `
   <a
     className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
-    target="_blank"
+    rel="no-referrer"
     visualstate="default"
   >
     See Example
@@ -202,7 +202,7 @@ exports[`different whichRoute values whichRoute not set 1`] = `
   <a
     className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
-    target="_blank"
+    rel="no-referrer"
     visualstate="default"
   >
     See Example
@@ -237,7 +237,7 @@ exports[`snapshot on load 1`] = `
   <a
     className="example-link css-gq9b4g"
     href="http://app.ineedtobuy.xyz/"
-    target="_blank"
+    rel="no-referrer"
     visualstate="default"
   >
     See Example

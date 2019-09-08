@@ -63,7 +63,7 @@ exports[`test routeTo values routeTo is set to an external URL 1`] = `
 <a
   className="test-class css-gq9b4g"
   href="http://google.com"
-  target="_blank"
+  rel="no-referrer"
   visualstate="default"
 >
   this is a smart link
