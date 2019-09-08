@@ -1,7 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { withFirestore } from 'react-firestore';
-import Header from '../../components/header';
+import {
+  ContentWrapper,
+  Header,
+  PageWrapper,
+  SmartLink,
+} from '../../components';
 import getToken from '../../lib/token';
 
 const CreateList = ({ firestore }) => {
@@ -23,15 +28,29 @@ const CreateList = ({ firestore }) => {
   };
 
   return (
-    <main className="createList">
+    <PageWrapper>
       <Header />
-      <h2 className="welcomeTitle">Welcome to your smart shopping list!</h2>
-      <h3 className="tagline">Click 'Create Shopping Lists' to start.</h3>
-      <Link to="/" onClick={handleSubmit}>
-        <button type="submit">Create Shopping List</button>
-      </Link>
-    </main>
+      <ContentWrapper>
+        <h2 className="welcomeTitle">Welcome to your smart shopping list!</h2>
+        <h3 className="tagline">
+          Click &quot;Create Shopping Lists&quot; to start.
+        </h3>
+        <SmartLink
+          className="create-list-link"
+          routeTo="/"
+          onClick={handleSubmit}
+        >
+          Create Shopping List
+        </SmartLink>
+      </ContentWrapper>
+    </PageWrapper>
   );
 };
 
 export default withFirestore(CreateList);
+
+CreateList.propTypes = {
+  firestore: PropTypes.shape({
+    collection: PropTypes.func,
+  }),
+};

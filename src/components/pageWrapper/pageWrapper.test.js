@@ -2,18 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import TestRenderer from 'react-test-renderer';
-import { fb as firebase } from './lib/firebase.js';
-import { FirestoreProvider } from 'react-firestore';
-import App from './app';
+import PageWrapper from './index';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <FirestoreProvider firebase={firebase}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </FirestoreProvider>,
+    <BrowserRouter>
+      <PageWrapper>must have content</PageWrapper>
+    </BrowserRouter>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
@@ -21,11 +17,10 @@ it('renders without crashing', () => {
 
 it('snapshot on load', () => {
   const tree = TestRenderer.create(
-    <FirestoreProvider firebase={firebase}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </FirestoreProvider>
+    <BrowserRouter>
+      <PageWrapper>must have content</PageWrapper>
+    </BrowserRouter>
   );
+
   expect(tree.toJSON()).toMatchSnapshot();
 });

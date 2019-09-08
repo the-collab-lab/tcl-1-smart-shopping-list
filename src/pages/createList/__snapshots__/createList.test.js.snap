@@ -39,44 +39,24 @@ exports[`snapshot on load 1`] = `
   <section
     className="content-wrapper css-1xpf03y"
   >
-    <form
-      onSubmit={[Function]}
+    <h2
+      className="welcomeTitle"
     >
-      <label>
-        Add Item:
-        <input
-          id="name"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </label>
-      <button
-        onClick={[Function]}
-      >
-        Add item
-      </button>
-    </form>
-  </section>
-  <footer
-    className="footer css-1i3mvty"
-  >
+      Welcome to your smart shopping list!
+    </h2>
+    <h3
+      className="tagline"
+    >
+      Click "Create Shopping Lists" to start.
+    </h3>
     <a
-      className="list-link css-gq9b4g"
+      className="create-list-link css-gq9b4g"
       href="/"
       onClick={[Function]}
       visualstate="default"
     >
-      My List
+      Create Shopping List
     </a>
-    <a
-      className="add-item-link css-gq9b4g"
-      href="/add-item"
-      onClick={[Function]}
-      visualstate="default"
-    >
-      Add Item
-    </a>
-  </footer>
+  </section>
 </main>
 `;

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot on load 1`] = `
+<main
+  className="page-wrapper css-vdsylo"
+>
+  must have content
+</main>
+`;

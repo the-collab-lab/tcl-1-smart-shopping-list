@@ -1,13 +1,246 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`different showBackLink values showBackLink === false 1`] = `
+<header
+  className="header css-527nkd"
+>
+  <a
+    className="back-link css-nuywz6"
+    href="/"
+    onClick={[Function]}
+    visualstate="hidden"
+  >
+    Go Back
+  </a>
+  <a
+    className="title-link css-gq9b4g"
+    href="/"
+    onClick={[Function]}
+    visualstate="default"
+  >
+    <h1
+      className="css-r73csp"
+    >
+      iNeedToBuy
+    </h1>
+  </a>
+  <a
+    className="example-link css-gq9b4g"
+    href="http://app.ineedtobuy.xyz/"
+    rel="no-referrer"
+    visualstate="default"
+  >
+    See Example
+  </a>
+</header>
+`;
+
+exports[`different showBackLink values showBackLink === true 1`] = `
+<header
+  className="header css-527nkd"
+>
+  <a
+    className="back-link css-gq9b4g"
+    href="/"
+    onClick={[Function]}
+    visualstate="default"
+  >
+    Go Back
+  </a>
+  <a
+    className="title-link css-gq9b4g"
+    href="/"
+    onClick={[Function]}
+    visualstate="default"
+  >
+    <h1
+      className="css-r73csp"
+    >
+      iNeedToBuy
+    </h1>
+  </a>
+  <a
+    className="example-link css-gq9b4g"
+    href="http://app.ineedtobuy.xyz/"
+    rel="no-referrer"
+    visualstate="default"
+  >
+    See Example
+  </a>
+</header>
+`;
+
+exports[`different showBackLink values showBackLink not set 1`] = `
+<header
+  className="header css-527nkd"
+>
+  <a
+    className="back-link css-nuywz6"
+    href="/"
+    onClick={[Function]}
+    visualstate="hidden"
+  >
+    Go Back
+  </a>
+  <a
+    className="title-link css-gq9b4g"
+    href="/"
+    onClick={[Function]}
+    visualstate="default"
+  >
+    <h1
+      className="css-r73csp"
+    >
+      iNeedToBuy
+    </h1>
+  </a>
+  <a
+    className="example-link css-gq9b4g"
+    href="http://app.ineedtobuy.xyz/"
+    rel="no-referrer"
+    visualstate="default"
+  >
+    See Example
+  </a>
+</header>
+`;
+
+exports[`different whichRoute values whichRoute === "/" 1`] = `
+<header
+  className="header css-527nkd"
+>
+  <a
+    className="back-link css-nuywz6"
+    href="/"
+    onClick={[Function]}
+    visualstate="hidden"
+  >
+    Go Back
+  </a>
+  <a
+    className="title-link css-gq9b4g"
+    href="/"
+    onClick={[Function]}
+    visualstate="default"
+  >
+    <h1
+      className="css-r73csp"
+    >
+      iNeedToBuy
+    </h1>
+  </a>
+  <a
+    className="example-link css-gq9b4g"
+    href="http://app.ineedtobuy.xyz/"
+    rel="no-referrer"
+    visualstate="default"
+  >
+    See Example
+  </a>
+</header>
+`;
+
+exports[`different whichRoute values whichRoute === "/add-item" 1`] = `
+<header
+  className="header css-527nkd"
+>
+  <a
+    className="back-link css-nuywz6"
+    href="/add-item"
+    onClick={[Function]}
+    visualstate="hidden"
+  >
+    Go Back
+  </a>
+  <a
+    className="title-link css-gq9b4g"
+    href="/"
+    onClick={[Function]}
+    visualstate="default"
+  >
+    <h1
+      className="css-r73csp"
+    >
+      iNeedToBuy
+    </h1>
+  </a>
+  <a
+    className="example-link css-gq9b4g"
+    href="http://app.ineedtobuy.xyz/"
+    rel="no-referrer"
+    visualstate="default"
+  >
+    See Example
+  </a>
+</header>
+`;
+
+exports[`different whichRoute values whichRoute not set 1`] = `
+<header
+  className="header css-527nkd"
+>
+  <a
+    className="back-link css-nuywz6"
+    href="/"
+    onClick={[Function]}
+    visualstate="hidden"
+  >
+    Go Back
+  </a>
+  <a
+    className="title-link css-gq9b4g"
+    href="/"
+    onClick={[Function]}
+    visualstate="default"
+  >
+    <h1
+      className="css-r73csp"
+    >
+      iNeedToBuy
+    </h1>
+  </a>
+  <a
+    className="example-link css-gq9b4g"
+    href="http://app.ineedtobuy.xyz/"
+    rel="no-referrer"
+    visualstate="default"
+  >
+    See Example
+  </a>
+</header>
+`;
+
 exports[`snapshot on load 1`] = `
 <header
-  className="header"
+  className="header css-527nkd"
 >
-  <h1
-    className="title"
+  <a
+    className="back-link css-nuywz6"
+    href="/"
+    onClick={[Function]}
+    visualstate="hidden"
   >
-    iNeedToBuy
-  </h1>
+    Go Back
+  </a>
+  <a
+    className="title-link css-gq9b4g"
+    href="/"
+    onClick={[Function]}
+    visualstate="default"
+  >
+    <h1
+      className="css-r73csp"
+    >
+      iNeedToBuy
+    </h1>
+  </a>
+  <a
+    className="example-link css-gq9b4g"
+    href="http://app.ineedtobuy.xyz/"
+    rel="no-referrer"
+    visualstate="default"
+  >
+    See Example
+  </a>
 </header>
 `;

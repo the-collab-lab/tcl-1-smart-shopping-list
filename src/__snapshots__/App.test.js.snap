@@ -1,49 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`snapshot on load 1`] = `
-Array [
-  <main
-    className="pageOne"
+<main
+  className="page-wrapper css-vdsylo"
+>
+  <header
+    className="header css-527nkd"
   >
-    <header
-      className="header"
+    <a
+      className="back-link css-nuywz6"
+      href="/"
+      onClick={[Function]}
+      visualstate="hidden"
+    >
+      Go Back
+    </a>
+    <a
+      className="title-link css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
     >
       <h1
-        className="title"
+        className="css-r73csp"
       >
         iNeedToBuy
       </h1>
-    </header>
-    <section>
-      <p>
-        Loading...
-      </p>
-    </section>
-    <footer
-      className="footer"
+    </a>
+    <a
+      className="example-link css-gq9b4g"
+      href="http://app.ineedtobuy.xyz/"
+      rel="no-referrer"
+      visualstate="default"
     >
-      <a
-        href="/add-item"
-        onClick={[Function]}
-      >
-        <button
-          type="submit"
-        >
-          Add Item
-        </button>
-      </a>
-      <a
-        href="/"
-        onClick={[Function]}
-      >
-        <button
-          type="submit"
-        >
-          My List
-        </button>
-      </a>
-    </footer>
-  </main>,
-  " ",
-]
+      See Example
+    </a>
+  </header>
+  <section
+    className="content-wrapper css-1xpf03y"
+  >
+    <p
+      className="loading"
+    >
+      Loading...
+    </p>
+  </section>
+  <footer
+    className="footer css-1i3mvty"
+  >
+    <a
+      className="list-link css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      My List
+    </a>
+    <a
+      className="add-item-link css-gq9b4g"
+      href="/add-item"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      Add Item
+    </a>
+  </footer>
+</main>
 `;

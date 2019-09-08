@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot on load 1`] = `
+<a
+  className="test-class css-gq9b4g"
+  href="/"
+  onClick={[Function]}
+  visualstate="default"
+>
+  this is a smart link
+</a>
+`;
+
+exports[`test content values content is a React element 1`] = `
+<a
+  className="test-class css-gq9b4g"
+  href="/"
+  onClick={[Function]}
+  visualstate="default"
+>
+  <span>
+    this is a fake component
+  </span>
+</a>
+`;
+
+exports[`test content values content is an html element 1`] = `
+<a
+  className="test-class css-gq9b4g"
+  href="/"
+  onClick={[Function]}
+  visualstate="default"
+>
+  <h1>
+    this is an h1 element
+  </h1>
+</a>
+`;
+
+exports[`test content values content is type string 1`] = `
+<a
+  className="test-class css-gq9b4g"
+  href="/"
+  onClick={[Function]}
+  visualstate="default"
+>
+  this is a smart link
+</a>
+`;
+
+exports[`test routeTo values routeTo is not set 1`] = `
+<a
+  className="test-class css-gq9b4g"
+  href="/"
+  onClick={[Function]}
+  visualstate="default"
+>
+  this is a smart link
+</a>
+`;
+
+exports[`test routeTo values routeTo is set to an external URL 1`] = `
+<a
+  className="test-class css-gq9b4g"
+  href="http://google.com"
+  rel="no-referrer"
+  visualstate="default"
+>
+  this is a smart link
+</a>
+`;
+
+exports[`test routeTo values routeTo is set to known route 1`] = `
+<a
+  className="test-class css-gq9b4g"
+  href="/add-item"
+  onClick={[Function]}
+  visualstate="default"
+>
+  this is a smart link
+</a>
+`;
+
+exports[`test routeTo values routeTo is set to unknown route 1`] = `
+<a
+  className="test-class css-gq9b4g"
+  href="/fake-link"
+  onClick={[Function]}
+  visualstate="default"
+>
+  this is a smart link
+</a>
+`;
+
+exports[`test visualState values visualState is not set 1`] = `
+<a
+  className="test-class css-gq9b4g"
+  href="/"
+  onClick={[Function]}
+  visualstate="default"
+>
+  this is a smart link
+</a>
+`;
+
+exports[`test visualState values visualState set to default 1`] = `
+<a
+  className="test-class css-gq9b4g"
+  href="/"
+  onClick={[Function]}
+  visualstate="default"
+>
+  this is a smart link
+</a>
+`;
+
+exports[`test visualState values visualState set to disabled 1`] = `
+<a
+  className="test-class css-1k806u0"
+  href="/"
+  onClick={[Function]}
+  visualstate="disabled"
+>
+  this is a smart link
+</a>
+`;
+
+exports[`test visualState values visualState set to hidden 1`] = `
+<a
+  className="test-class css-nuywz6"
+  href="/"
+  onClick={[Function]}
+  visualstate="hidden"
+>
+  this is a smart link
+</a>
+`;

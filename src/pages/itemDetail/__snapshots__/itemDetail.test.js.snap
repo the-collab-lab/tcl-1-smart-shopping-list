@@ -8,10 +8,10 @@ exports[`snapshot on load 1`] = `
     className="header css-527nkd"
   >
     <a
-      className="back-link css-nuywz6"
+      className="back-link css-gq9b4g"
       href="/"
       onClick={[Function]}
-      visualstate="hidden"
+      visualstate="default"
     >
       Go Back
     </a>
@@ -39,24 +39,7 @@ exports[`snapshot on load 1`] = `
   <section
     className="content-wrapper css-1xpf03y"
   >
-    <form
-      onSubmit={[Function]}
-    >
-      <label>
-        Add Item:
-        <input
-          id="name"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </label>
-      <button
-        onClick={[Function]}
-      >
-        Add item
-      </button>
-    </form>
+    this is the item detail page, I know you selected a specific item, but we're not there yet. BUT this page **does** have a back button.
   </section>
   <footer
     className="footer css-1i3mvty"
