@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { withFirestore } from 'react-firestore';
 import PropTypes from 'prop-types';
 import { ContentWrapper, Footer, Header, PageWrapper } from '../../components';
-import { fb } from '../../lib/firebase';
 // import firebase from 'firebase/app';
 
 const AddItem = ({ firestore }) => {
   //load the collection into a variable when the component loads then compare against that
-  //make name lowercase when it's added to the database (this is pretty much done)
   const checkItems = itemNameToCheck => {
     firestore
       .collection('items')
@@ -36,7 +34,9 @@ const AddItem = ({ firestore }) => {
   const [token] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
-    if (name.toLowerCase() !== '') checkItems(name.toLowerCase());
+    if (name.toLowerCase() !== '') {
+      checkItems(name.toLowerCase());
+    }
   }, [name.toLowerCase()]);
 
   console.log('this: ', firestore.collection('items').doc().data);
@@ -69,8 +69,6 @@ const AddItem = ({ firestore }) => {
               onChange={handleChange}
             />
           </label>
-          <p>matchState boolean: {matchState.toString()}</p>
-          <p>string checked for match: {name}</p>
           {matchState ? (
             <p className="errorMessage">Item already exists!</p>
           ) : null}
