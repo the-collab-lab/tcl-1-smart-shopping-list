@@ -6,18 +6,36 @@ import { fb } from '../../lib/firebase';
 // import firebase from 'firebase/app';
 
 const AddItem = ({ firestore }) => {
-  const [name, setName] = useState('');
-  // Get the list token from localStorage the first time the component renders to avoid making the call to localStorage every time an item is added
-  const [token] = useState(localStorage.getItem('token'));
-  // var ref = fb.database().ref('items');
-  console.log({ fb });
-  // Send the new item to Firebase
+  const checkItems = itemNameToCheck => {
+    firestore
+      .collection('items')
+      .where('name', '==', itemNameToCheck)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          console.log('a match was found: ', doc.id, ' => ', doc.data());
+          setMatchState(true);
+        });
+      })
+      .catch(function(error) {
+        console.log('Error getting documents: ', error);
+      });
+  };
+
   const addItem = name => {
     firestore.collection('items').add({
       name: name,
       listToken: token,
     });
   };
+
+  const [matchState, setMatchState] = useState(false);
+  const [name, setName] = useState('');
+  const [token] = useState(localStorage.getItem('token'));
+
+  useEffect(() => {
+    checkItems(name);
+  }, [name]);
 
   console.log(firestore.collection('items').doc().data);
 
@@ -56,7 +74,9 @@ const AddItem = ({ firestore }) => {
               onChange={handleChange}
             />
           </label>
-          {name === 'apple' ? (
+          <p>matchState boolean: {matchState.toString()}</p>
+          <p>string checked for match: {name}</p>
+          {matchState ? (
             <p className="errorMessage">Item already exists!</p>
           ) : null}
           <button onClick={handleSubmit}>Add item</button>
