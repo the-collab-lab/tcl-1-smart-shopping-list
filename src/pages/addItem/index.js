@@ -6,6 +6,8 @@ import { fb } from '../../lib/firebase';
 // import firebase from 'firebase/app';
 
 const AddItem = ({ firestore }) => {
+  //load the collection into a variable when the component loads then compare against that
+  //make name lowercase when it's added to the database (this is pretty much done)
   const checkItems = itemNameToCheck => {
     firestore
       .collection('items')
@@ -34,18 +36,10 @@ const AddItem = ({ firestore }) => {
   const [token] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
-    if (name !== '') checkItems(name);
-  }, [name]);
+    if (name.toLowerCase() !== '') checkItems(name.toLowerCase());
+  }, [name.toLowerCase()]);
 
   console.log('this: ', firestore.collection('items').doc().data);
-
-  // async function getMarker() {
-  //   const snapshot = await firebase
-  //     .firestore()
-  //     .collection('items')
-  //     .get();
-  //   console.log(snapshot.docs.map(doc => doc.data()));
-  // }
 
   // The state every time an event happens
   const handleChange = event => {
@@ -56,7 +50,7 @@ const AddItem = ({ firestore }) => {
   // Handle the click of the Add Item botton on the form
   const handleSubmit = event => {
     event.preventDefault();
-    addItem(name);
+    addItem(name.toLowerCase());
   };
 
   return (
