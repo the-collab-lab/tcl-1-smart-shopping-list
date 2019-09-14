@@ -5,20 +5,22 @@ import { ContentWrapper, Footer, Header, PageWrapper } from '../../components';
 // import firebase from 'firebase/app';
 
 const AddItem = ({ firestore }) => {
-  //load the collection into a variable when the component loads then compare against that
-  const checkItems = itemNameToCheck => {
+  const checkForDupes = dbList => {
+    return dbList.find(
+      item => item.data().name.toLowerCase() === name.toLowerCase()
+    );
+  };
+
+  const checkItems = () => {
     firestore
       .collection('items')
-      .where('name', '==', itemNameToCheck)
+      .where('listToken', '==', token)
       .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(function(doc) {
-          console.log('a match was found: ', doc.data());
-          setMatchState(true);
-        });
-      })
-      .catch(function(error) {
-        console.log('Error getting documents: ', error);
+      .then(response => {
+        const dupeIfFound = checkForDupes(response.docs);
+        dupeIfFound
+          ? console.log('found a dupe!: ', dupeIfFound)
+          : console.log('no dupe found. this is safe to add to the db');
       });
   };
 
@@ -29,28 +31,24 @@ const AddItem = ({ firestore }) => {
     });
   };
 
-  const [matchState, setMatchState] = useState(false);
+  const [matchState, setMatchState] = useState(null); // null is neutral "nothing to check state", otherwise pass boolean
   const [name, setName] = useState('');
   const [token] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
-    if (name.toLowerCase() !== '') {
-      checkItems(name.toLowerCase());
-    }
-  }, [name.toLowerCase()]);
-
-  console.log('this: ', firestore.collection('items').doc().data);
+    console.log({ name });
+  }, [name]);
 
   // The state every time an event happens
   const handleChange = event => {
     setName(event.target.value);
-    setMatchState(false);
+    setMatchState(null);
   };
 
   // Handle the click of the Add Item botton on the form
   const handleSubmit = event => {
     event.preventDefault();
-    addItem(name.toLowerCase());
+    checkItems();
   };
 
   return (
