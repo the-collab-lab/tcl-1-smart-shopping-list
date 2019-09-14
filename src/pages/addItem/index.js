@@ -18,9 +18,7 @@ const AddItem = ({ firestore }) => {
       .get()
       .then(response => {
         const dupeIfFound = checkForDupes(response.docs);
-        dupeIfFound
-          ? console.log('found a dupe!: ', dupeIfFound)
-          : console.log('no dupe found. this is safe to add to the db');
+        dupeIfFound ? setMatchState(true) : setMatchState(false);
       });
   };
 
@@ -49,6 +47,9 @@ const AddItem = ({ firestore }) => {
   const handleSubmit = event => {
     event.preventDefault();
     checkItems();
+    setTimeout(() => {
+      addItem(name);
+    }, 1000);
   };
 
   return (
@@ -67,9 +68,12 @@ const AddItem = ({ firestore }) => {
               onChange={handleChange}
             />
           </label>
-          {matchState ? (
+          {matchState === true ? (
             <p className="errorMessage">Item already exists!</p>
+          ) : matchState === false ? (
+            <p className="errorMessage">Adding item!</p>
           ) : null}
+          {/* the null state is for when matchState === null */}
           <button onClick={handleSubmit}>Add item</button>
         </form>
       </ContentWrapper>
