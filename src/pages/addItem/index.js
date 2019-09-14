@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { withFirestore } from 'react-firestore';
 import PropTypes from 'prop-types';
 import { ContentWrapper, Footer, Header, PageWrapper } from '../../components';
-// import firebase from 'firebase/app';
 
 const AddItem = ({ firestore }) => {
   const checkForDupes = dbList => {
@@ -69,9 +68,9 @@ const AddItem = ({ firestore }) => {
             />
           </label>
           {matchState === true ? (
-            <p className="errorMessage">Item already exists!</p>
+            <p className="itemFeedback">Item already exists!</p>
           ) : matchState === false ? (
-            <p className="errorMessage">Adding item!</p>
+            <p className="itemFeedback">Adding item!</p>
           ) : null}
           {/* the null state is for when matchState === null */}
           <button onClick={handleSubmit}>Add item</button>
