@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`snapshot on load 1`] = `
+exports[`addItem DOES NOT contain items snapshot on load 1`] = `
 <main
   className="page-wrapper css-vdsylo"
 >
@@ -40,19 +40,286 @@ exports[`snapshot on load 1`] = `
     className="content-wrapper css-1xpf03y"
   >
     <form
+      className="form-example"
       onSubmit={[Function]}
     >
       <label>
         Add Item:
         <input
+          className="name-text-input"
           id="name"
           onChange={[Function]}
           type="text"
           value=""
         />
       </label>
+      <label>
+        <input
+          checked={true}
+          className="frequency-radio-button"
+          name="frequency"
+          onChange={[Function]}
+          type="radio"
+          value="soon"
+        />
+        Soon
+      </label>
+      <label>
+        <input
+          checked={false}
+          className="frequency-radio-button"
+          name="frequency"
+          onChange={[Function]}
+          type="radio"
+          value="kind-of-soon"
+        />
+        Kind of soon
+      </label>
+      <label>
+        <input
+          checked={false}
+          className="frequency-radio-button"
+          name="frequency"
+          onChange={[Function]}
+          type="radio"
+          value="not-soon"
+        />
+        Not Soon
+      </label>
       <button
-        onClick={[Function]}
+        type="submit"
+      >
+        Add item
+      </button>
+    </form>
+  </section>
+  <footer
+    className="footer css-1i3mvty"
+  >
+    <a
+      className="list-link css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      My List
+    </a>
+    <a
+      className="add-item-link css-gq9b4g"
+      href="/add-item"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      Add Item
+    </a>
+  </footer>
+</main>
+`;
+
+exports[`addItem DOES contain items snapshot on load 1`] = `
+<main
+  className="page-wrapper css-vdsylo"
+>
+  <header
+    className="header css-527nkd"
+  >
+    <a
+      className="back-link css-nuywz6"
+      href="/"
+      onClick={[Function]}
+      visualstate="hidden"
+    >
+      Go Back
+    </a>
+    <a
+      className="title-link css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      <h1
+        className="css-r73csp"
+      >
+        iNeedToBuy
+      </h1>
+    </a>
+    <a
+      className="example-link css-gq9b4g"
+      href="http://app.ineedtobuy.xyz/"
+      rel="no-referrer"
+      visualstate="default"
+    >
+      See Example
+    </a>
+  </header>
+  <section
+    className="content-wrapper css-1xpf03y"
+  >
+    <form
+      className="form-example"
+      onSubmit={[Function]}
+    >
+      <label>
+        Add Item:
+        <input
+          className="name-text-input"
+          id="name"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </label>
+      <label>
+        <input
+          checked={true}
+          className="frequency-radio-button"
+          name="frequency"
+          onChange={[Function]}
+          type="radio"
+          value="soon"
+        />
+        Soon
+      </label>
+      <label>
+        <input
+          checked={false}
+          className="frequency-radio-button"
+          name="frequency"
+          onChange={[Function]}
+          type="radio"
+          value="kind-of-soon"
+        />
+        Kind of soon
+      </label>
+      <label>
+        <input
+          checked={false}
+          className="frequency-radio-button"
+          name="frequency"
+          onChange={[Function]}
+          type="radio"
+          value="not-soon"
+        />
+        Not Soon
+      </label>
+      <button
+        type="submit"
+      >
+        Add item
+      </button>
+    </form>
+  </section>
+  <footer
+    className="footer css-1i3mvty"
+  >
+    <a
+      className="list-link css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      My List
+    </a>
+    <a
+      className="add-item-link css-gq9b4g"
+      href="/add-item"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      Add Item
+    </a>
+  </footer>
+</main>
+`;
+
+exports[`addItem is not provided any context values, redirects snapshot on load 1`] = `
+<main
+  className="page-wrapper css-vdsylo"
+>
+  <header
+    className="header css-527nkd"
+  >
+    <a
+      className="back-link css-nuywz6"
+      href="/"
+      onClick={[Function]}
+      visualstate="hidden"
+    >
+      Go Back
+    </a>
+    <a
+      className="title-link css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      <h1
+        className="css-r73csp"
+      >
+        iNeedToBuy
+      </h1>
+    </a>
+    <a
+      className="example-link css-gq9b4g"
+      href="http://app.ineedtobuy.xyz/"
+      rel="no-referrer"
+      visualstate="default"
+    >
+      See Example
+    </a>
+  </header>
+  <section
+    className="content-wrapper css-1xpf03y"
+  >
+    <form
+      className="form-example"
+      onSubmit={[Function]}
+    >
+      <label>
+        Add Item:
+        <input
+          className="name-text-input"
+          id="name"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </label>
+      <label>
+        <input
+          checked={true}
+          className="frequency-radio-button"
+          name="frequency"
+          onChange={[Function]}
+          type="radio"
+          value="soon"
+        />
+        Soon
+      </label>
+      <label>
+        <input
+          checked={false}
+          className="frequency-radio-button"
+          name="frequency"
+          onChange={[Function]}
+          type="radio"
+          value="kind-of-soon"
+        />
+        Kind of soon
+      </label>
+      <label>
+        <input
+          checked={false}
+          className="frequency-radio-button"
+          name="frequency"
+          onChange={[Function]}
+          type="radio"
+          value="not-soon"
+        />
+        Not Soon
+      </label>
+      <button
+        type="submit"
       >
         Add item
       </button>
