@@ -49,14 +49,32 @@ exports[`snapshot on load 1`] = `
     >
       Click "Create Shopping Lists" to start.
     </h3>
+    <button
+      className="create-list-link"
+      onClick={[Function]}
+    >
+      Create Shopping List
+    </button>
+  </section>
+  <footer
+    className="footer css-1i3mvty"
+  >
     <a
-      className="create-list-link css-gq9b4g"
+      className="list-link css-gq9b4g"
       href="/"
       onClick={[Function]}
       visualstate="default"
     >
-      Create Shopping List
+      My List
     </a>
-  </section>
+    <a
+      className="add-item-link css-gq9b4g"
+      href="/add-item"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      Add Item
+    </a>
+  </footer>
 </main>
 `;
