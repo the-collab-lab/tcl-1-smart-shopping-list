@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`snapshot on load 1`] = `
+exports[`list DOES NOT contain items snapshot on load 1`] = `
 <main
   className="page-wrapper css-vdsylo"
 >
@@ -44,6 +44,151 @@ exports[`snapshot on load 1`] = `
     >
       Loading...
     </p>
+    <div>
+      <ul />
+    </div>
+  </section>
+  <footer
+    className="footer css-1i3mvty"
+  >
+    <a
+      className="list-link css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      My List
+    </a>
+    <a
+      className="add-item-link css-gq9b4g"
+      href="/add-item"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      Add Item
+    </a>
+  </footer>
+</main>
+`;
+
+exports[`list DOES contain items snapshot on load 1`] = `
+<main
+  className="page-wrapper css-vdsylo"
+>
+  <header
+    className="header css-527nkd"
+  >
+    <a
+      className="back-link css-nuywz6"
+      href="/"
+      onClick={[Function]}
+      visualstate="hidden"
+    >
+      Go Back
+    </a>
+    <a
+      className="title-link css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      <h1
+        className="css-r73csp"
+      >
+        iNeedToBuy
+      </h1>
+    </a>
+    <a
+      className="example-link css-gq9b4g"
+      href="http://app.ineedtobuy.xyz/"
+      rel="no-referrer"
+      visualstate="default"
+    >
+      See Example
+    </a>
+  </header>
+  <section
+    className="content-wrapper css-1xpf03y"
+  >
+    <p
+      className="loading"
+    >
+      Loading...
+    </p>
+    <div>
+      <ul />
+    </div>
+  </section>
+  <footer
+    className="footer css-1i3mvty"
+  >
+    <a
+      className="list-link css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      My List
+    </a>
+    <a
+      className="add-item-link css-gq9b4g"
+      href="/add-item"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      Add Item
+    </a>
+  </footer>
+</main>
+`;
+
+exports[`list is only provided list context values, redirects snapshot on load 1`] = `
+<main
+  className="page-wrapper css-vdsylo"
+>
+  <header
+    className="header css-527nkd"
+  >
+    <a
+      className="back-link css-nuywz6"
+      href="/"
+      onClick={[Function]}
+      visualstate="hidden"
+    >
+      Go Back
+    </a>
+    <a
+      className="title-link css-gq9b4g"
+      href="/"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      <h1
+        className="css-r73csp"
+      >
+        iNeedToBuy
+      </h1>
+    </a>
+    <a
+      className="example-link css-gq9b4g"
+      href="http://app.ineedtobuy.xyz/"
+      rel="no-referrer"
+      visualstate="default"
+    >
+      See Example
+    </a>
+  </header>
+  <section
+    className="content-wrapper css-1xpf03y"
+  >
+    <p
+      className="loading"
+    >
+      Loading...
+    </p>
+    <div>
+      <ul />
+    </div>
   </section>
   <footer
     className="footer css-1i3mvty"

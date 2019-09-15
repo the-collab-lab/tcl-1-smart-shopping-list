@@ -39,11 +39,22 @@ exports[`snapshot on load 1`] = `
   <section
     className="content-wrapper css-1xpf03y"
   >
-    <p
-      className="loading"
+    <h2
+      className="welcomeTitle"
     >
-      Loading...
-    </p>
+      Welcome to your smart shopping list!
+    </h2>
+    <h3
+      className="tagline"
+    >
+      Click "Create Shopping Lists" to start.
+    </h3>
+    <button
+      className="create-list-link"
+      onClick={[Function]}
+    >
+      Create Shopping List
+    </button>
   </section>
   <footer
     className="footer css-1i3mvty"
