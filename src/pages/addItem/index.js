@@ -11,19 +11,13 @@ import {
 import { TokenContext, ListContext } from '../../contexts';
 
 const AddItem = ({ history, firestore }) => {
+  //NOTE: we are doing this on a 0 index basis so the urgency is ordered in terms of soonest to buy
+  //TODO 1 put frequencyOptions in a global variable called staticValues or something like thaaaaat
+  //TODO 2 cleanup the frequencyOptions array to remove value
   const frequencyOptions = [
-    {
-      display: 'Soon',
-      value: 'soon',
-    },
-    {
-      display: 'Kind of soon',
-      value: 'kind-of-soon',
-    },
-    {
-      display: 'Not Soon',
-      value: 'not-soon',
-    },
+    { display: 'Soon', value: 'soon', urgency: 0 },
+    { display: 'Kind of soon', value: 'kind-of-soon', urgency: 1 },
+    { display: 'Not Soon', value: 'not-soon', urgency: 2 },
   ];
 
   // NOTE: the line below is a destructuring declaration, which gives us a more concise way of
@@ -34,7 +28,7 @@ const AddItem = ({ history, firestore }) => {
   // up declarations, like this:
   //   const token = useContext(TokenContext).token;
   //   const setTokenValue = useContext(TokenContext).setTokenValue;
-  //   const confirmToken = useContext(TokenContext).confirmToken;
+  //   const confirmToken = use Context(TokenContext).confirmToken;
   const { token } = useContext(TokenContext);
   const { list, setListValue } = useContext(ListContext);
 
@@ -178,6 +172,7 @@ const AddItem = ({ history, firestore }) => {
 };
 
 export default withFirestore(AddItem);
+//TODO 4 add export for frequency options array
 
 AddItem.propTypes = {
   history: PropTypes.object.isRequired,

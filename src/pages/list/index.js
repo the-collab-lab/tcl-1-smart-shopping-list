@@ -37,6 +37,9 @@ const List = ({ history, firestore }) => {
   //
   // Additionally, the format that the lists come back in isn't a simple array, so
   // we map through and return the .data() on each of the docs it returns.
+  //TODO 5 .filter() to find items that match the urgency index and order the groups accordingly
+  //TODO 6 assign color values to each level of urgency
+  //TODO 7 backwords compatibility - if urgency doesn't exist, look for value
   const retriveItemsFromFirebase = () => {
     firestore
       .collection('items')
