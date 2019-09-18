@@ -26,11 +26,11 @@ const AddItem = ({ history, firestore }) => {
 
   // NOTE: setting this particular component's private loading state
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState('');
 
   // NOTE: local state gives the value a place to live before we officially add them to the
   // app "state" (in the ListContext)
-  const [frequency, setFrequency] = useState(frequencyOptions[0].value);
+  const [name, setName] = useState('');
+  const [frequencyId, setFrequencyId] = useState(frequencyOptions[0].id);
   const [matchState, setMatchState] = useState(null);
 
   // NOTE: users won't have a list to view or add items to if they don't have a token, so
@@ -100,22 +100,34 @@ const AddItem = ({ history, firestore }) => {
         const merged = [...list, ...[item]];
         setListValue(merged);
         setName('');
-        setFrequency(frequencyOptions[0].value);
+        setFrequencyId(frequencyOptions[0].id);
       })
       .catch(error => console.error('Error getting documents: ', error))
       .finally(() => setLoading(false));
   };
+
+  const setUrgency = id => {
+    const itemObject = {
+      name, frequencyId, listToken: token, dateAdded: Date.now();
+    }
+    sendNewItemToFirebase(itemObject);
+  };  
 
   const handleTextChange = event => {
     setName(event.target.value);
     setMatchState(null);
   };
 
-  const handleRadioButtonChange = event => setFrequency(event.target.value);
+  const handleRadioButtonChange = event => {
+    // NOTE: the id gets turned into a string, this ensures we're checking a number vs a number otherwise deep equal fails
+    const valueFromsStringToNumber = Number(event.target.value);
+    setFrequencyId(valueFromsStringToNumber);
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
     checkItems();
+    // setUrgency();
   };
 
   return (
@@ -144,7 +156,7 @@ const AddItem = ({ history, firestore }) => {
                 value={option.id}
                 className="frequency-radio-button"
                 onChange={handleRadioButtonChange}
-                checked={frequency === option.id}
+                checked={frequencyId === option.id}
               />
               {option.display}
             </label>
