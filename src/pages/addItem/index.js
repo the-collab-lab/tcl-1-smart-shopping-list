@@ -97,6 +97,7 @@ const AddItem = ({ history, firestore }) => {
       .collection('items')
       .add(item)
       .then(response => {
+        console.log('response from firebase after the add: ', response);
         const merged = [...list, ...[item]];
         setListValue(merged);
         setName('');
@@ -113,6 +114,7 @@ const AddItem = ({ history, firestore }) => {
       listToken: token,
       dateAdded: Date.now(),
     };
+    console.log("this is the object we're sending to firebase: ", itemObject);
     sendNewItemToFirebase(itemObject);
   };
 
