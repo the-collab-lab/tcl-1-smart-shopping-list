@@ -36,8 +36,6 @@ const AddItem = ({ history, firestore }) => {
   // "push" them to where they can get started
   if (!token) history.push('/create-list');
 
-  //TODO 3 pass urgency number instead of value to firebase
-
   const sendNewItemToFirebase = item => {
     setLoading(true);
 
@@ -56,8 +54,11 @@ const AddItem = ({ history, firestore }) => {
 
   const setUrgency = id => {
     const itemObject = {
-      name, frequencyId, listToken: token, dateAdded: Date.now();
-    }
+      name,
+      frequencyId,
+      listToken: token,
+      dateAdded: Date.now(),
+    };
     sendNewItemToFirebase(itemObject);
   };
 
@@ -115,7 +116,7 @@ const AddItem = ({ history, firestore }) => {
 };
 
 export default withFirestore(AddItem);
-//TODO 4 (kate: doing #1 instead) add export for frequency options array
+//DONE 4 (skip: doing #1 instead) add export for frequency options array, instead we'll import it at the top of the file
 
 AddItem.propTypes = {
   history: PropTypes.object.isRequired,
