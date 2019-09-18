@@ -30,7 +30,7 @@ const AddItem = ({ history, firestore }) => {
   // NOTE: local state gives the value a place to live before we officially add them to the
   // app "state" (in the ListContext)
   const [name, setName] = useState('');
-  const [frequency, setFrequency] = useState(frequencyOptions[0].value);
+  const [frequencyId, setFrequencyId] = useState(frequencyOptions[0].id);
 
   // NOTE: users won't have a list to view or add items to if they don't have a token, so
   // "push" them to where they can get started
@@ -48,24 +48,30 @@ const AddItem = ({ history, firestore }) => {
         const merged = [...list, ...[item]];
         setListValue(merged);
         setName('');
-        setFrequency(frequencyOptions[0].value);
+        setFrequencyId(frequencyOptions[0].id);
       })
       .catch(error => console.error('Error getting documents: ', error))
       .finally(() => setLoading(false));
   };
 
-  const checkUrgency = urgency => {
-    console.log(frequencyOptions.urgency);
-    sendNewItemToFirebase({ name, frequency, listToken: token });
+  const setUrgency = id => {
+    const itemObject = {
+      name, frequencyId, listToken: token, dateAdded: Date.now();
+    }
+    sendNewItemToFirebase(itemObject);
   };
 
   const handleTextChange = event => setName(event.target.value);
 
-  const handleRadioButtonChange = event => setFrequency(event.target.value);
+  const handleRadioButtonChange = event => {
+    // NOTE: the id gets turned into a string, this ensures we're checking a number vs a number otherwise deep equal fails
+    const valueFromsStringToNumber = Number(event.target.value);
+    setFrequencyId(valueFromsStringToNumber);
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
-    checkUrgency();
+    setUrgency();
   };
 
   return (
@@ -94,7 +100,7 @@ const AddItem = ({ history, firestore }) => {
                 value={option.id}
                 className="frequency-radio-button"
                 onChange={handleRadioButtonChange}
-                checked={frequency === option.id}
+                checked={frequencyId === option.id}
               />
               {option.display}
             </label>
