@@ -4,19 +4,19 @@
 const frequencyOptions = [
   {
     display: 'Soon',
-    urgency: 0, // matches the item's index within this array, at least for now
+    id: 0, // matches the item's index within this array, at least for now
     daysUntilDueMin: 1, // days until item is past due (0-7 days)
     daysUntilDueMax: 7, // days until item is past due (0-7 days)
   },
   {
     display: 'Kind of soon',
-    urgency: 1, // matches the item's index within this array, at least for now
+    id: 1, // matches the item's index within this array, at least for now
     daysUntilDue: 8, // days until item is past due (8-30 days)
     daysUntilDueMax: 30,
   },
   {
     display: 'Not Soon',
-    urgency: 2, // matches the item's index within this array, at least for now
+    id: 2, // matches the item's index within this array, at least for now
     daysUntilDue: 31, // days until item is past due (31+ days)
     daysUntilDueMax: null, // no upper end -- until it turns inactive
   },

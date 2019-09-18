@@ -91,10 +91,10 @@ const AddItem = ({ history, firestore }) => {
               <input
                 type="radio"
                 name="frequency"
-                value={option.value}
+                value={option.id}
                 className="frequency-radio-button"
                 onChange={handleRadioButtonChange}
-                checked={frequency === option.value}
+                checked={frequency === option.id}
               />
               {option.display}
             </label>
