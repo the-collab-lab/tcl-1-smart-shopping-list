@@ -1,6 +1,4 @@
-//NOTE: we are doing this on a 0 index basis so the urgency is ordered in terms of soonest to buy
-//TODO 1 (kate - done) put frequencyOptions in a global variable called staticValues or something like thaaaaat
-//TODO 2 (kate) cleanup the frequencyOptions array to remove value
+// NOTE: we are doing this on a 0 index basis so the urgency is ordered in terms of soonest to buy
 const frequencyOptions = [
   {
     display: 'Soon',
@@ -23,7 +21,6 @@ const frequencyOptions = [
 ];
 
 // NOTE: item considered inactive once it reaches 2n days past due where n equals it's previous frequency value
-// TODO 1.5 (kate - done) create a fn to calculate if item is considered due
 const checkIfInactive = daysUntilDue => daysUntilDue * 2;
 
 export { frequencyOptions, checkIfInactive };

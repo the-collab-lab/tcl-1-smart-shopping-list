@@ -53,7 +53,7 @@ const AddItem = ({ history, firestore }) => {
     const dupeIfFound = dbList.find(
       item => item.name.toLowerCase() === name.toLowerCase()
     );
-    dupeIfFound ? setMatchState(true) : triggerSendToFirebase();
+    // dupeIfFound ? setMatchState(true) : triggerSendToFirebase();
   };
 
   const checkItems = () => {
@@ -108,10 +108,13 @@ const AddItem = ({ history, firestore }) => {
 
   const setUrgency = id => {
     const itemObject = {
-      name, frequencyId, listToken: token, dateAdded: Date.now();
-    }
+      name,
+      frequencyId,
+      listToken: token,
+      dateAdded: Date.now(),
+    };
     sendNewItemToFirebase(itemObject);
-  };  
+  };
 
   const handleTextChange = event => {
     setName(event.target.value);
@@ -176,7 +179,7 @@ const AddItem = ({ history, firestore }) => {
 };
 
 export default withFirestore(AddItem);
-//TODO 4 (kate: doing #1 instead) add export for frequency options array
+//DONE 4 (skip: doing #1 instead) add export for frequency options array, instead we'll import it at the top of the file
 
 AddItem.propTypes = {
   history: PropTypes.object.isRequired,
