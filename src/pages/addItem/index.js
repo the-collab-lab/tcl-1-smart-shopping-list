@@ -48,9 +48,9 @@ const AddItem = ({ history, firestore }) => {
       .collection('items')
       .where('name', '==', itemNameToCheck)
       .get()
-      .then(function(querySnapshot) {
+      .then(querySnapshot => {
         querySnapshot.forEach(function(doc) {
-          console.log('a match was found: ', doc.id, ' => ', doc.data());
+          console.log('a match was found: ', doc.data());
           setMatchState(true);
         });
       })
@@ -85,10 +85,10 @@ const AddItem = ({ history, firestore }) => {
   };
 
   useEffect(() => {
-    checkItems(name);
+    if (name !== '') checkItems(name);
   }, [name]);
 
-  console.log(firestore.collection('items').doc().data);
+  console.log('this: ', firestore.collection('items').doc().data);
 
   // async function getMarker() {
   //   const snapshot = await firebase
@@ -100,7 +100,10 @@ const AddItem = ({ history, firestore }) => {
 
   // The state every time an event happens
 
-  const handleTextChange = event => setName(event.target.value);
+  const handleTextChange = event => {
+    setName(event.target.value);
+    setMatchState(false);
+  };
 
   const handleRadioButtonChange = event => setFrequency(event.target.value);
 
