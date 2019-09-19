@@ -42,10 +42,16 @@ const AddItem = ({ history, firestore }) => {
 
   const [matchState, setMatchState] = useState(false);
 
-  const checkItems = itemNameToCheck => {
+  const checkForDupes = dbList => {
+    return dbList.find(
+      item => item.data().name.toLowerCase() === name.toLowerCase()
+    );
+  };
+
+  const checkItems = () => {
     firestore
       .collection('items')
-      .where('name', '==', itemNameToCheck)
+      .where('listToken', '==', token)
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(function(doc) {
@@ -53,7 +59,12 @@ const AddItem = ({ history, firestore }) => {
         });
       })
       .catch(function(error) {
-        console.log('Error getting documents: ', error);
+        console.log('Error getting documents: ', error).then(response => {
+          const dupeIfFound = checkForDupes(response.docs);
+          dupeIfFound
+            ? console.log('found a dupe!: ', dupeIfFound)
+            : console.log('no dupe found. this is safe to add to the db');
+        });
       });
   };
   const addItem = name => {
@@ -87,12 +98,15 @@ const AddItem = ({ history, firestore }) => {
       checkItems(name.toLowerCase());
     }
   }, [name.toLowerCase()]);
+  // const [matchState, setMatchState] = useState(null); // null is neutral "nothing to check state", otherwise pass boolean
+  // const [name, setName] = useState('');
+  // const [token] = useState(localStorage.getItem('token'));
 
   // The state every time an event happens
 
   const handleTextChange = event => {
     setName(event.target.value);
-    setMatchState(false);
+    setMatchState(null);
   };
 
   const handleRadioButtonChange = event => setFrequency(event.target.value);
@@ -101,6 +115,7 @@ const AddItem = ({ history, firestore }) => {
     event.preventDefault();
     sendNewItemToFirebase({ name, frequency, listToken: token });
     addItem(name.toLowerCase());
+    checkItems();
   };
 
   return (
@@ -134,8 +149,6 @@ const AddItem = ({ history, firestore }) => {
               {option.display}
             </label>
           ))}
-          <p>matchState boolean: {matchState.toString()}</p>
-          <p>string checked for match: {name}</p>
           {matchState ? (
             <p className="errorMessage">Item already exists!</p>
           ) : null}
