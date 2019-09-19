@@ -53,18 +53,12 @@ const AddItem = ({ history, firestore }) => {
       .collection('items')
       .where('listToken', '==', token)
       .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(function(doc) {
-          setMatchState(true);
-        });
+      .then(response => {
+        const dupeIfFound = checkForDupes(response.docs);
+        dupeIfFound ? setMatchState(true) : setMatchState(false);
       })
       .catch(function(error) {
-        console.log('Error getting documents: ', error).then(response => {
-          const dupeIfFound = checkForDupes(response.docs);
-          dupeIfFound
-            ? console.log('found a dupe!: ', dupeIfFound)
-            : console.log('no dupe found. this is safe to add to the db');
-        });
+        console.log('Error getting documents: ', error);
       });
   };
   const addItem = name => {
@@ -101,9 +95,6 @@ const AddItem = ({ history, firestore }) => {
   // const [matchState, setMatchState] = useState(null); // null is neutral "nothing to check state", otherwise pass boolean
   // const [name, setName] = useState('');
   // const [token] = useState(localStorage.getItem('token'));
-
-  // The state every time an event happens
-
   const handleTextChange = event => {
     setName(event.target.value);
     setMatchState(null);
@@ -116,6 +107,9 @@ const AddItem = ({ history, firestore }) => {
     sendNewItemToFirebase({ name, frequency, listToken: token });
     addItem(name.toLowerCase());
     checkItems();
+    setTimeout(() => {
+      addItem(name);
+    }, 1000);
   };
 
   return (
@@ -149,12 +143,15 @@ const AddItem = ({ history, firestore }) => {
               {option.display}
             </label>
           ))}
-          {matchState ? (
+          {matchState === true ? (
             <p className="errorMessage">Item already exists!</p>
+          ) : matchState === false ? (
+            <p className="errorMessage">Adding item!</p>
           ) : null}
           <button type="submit" onClick={handleSubmit}>
             Add item
           </button>
+          {/* the null state is for when matchState === null */}
         </form>
       </ContentWrapper>
 
