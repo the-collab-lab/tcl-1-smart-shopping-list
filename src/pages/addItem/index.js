@@ -144,9 +144,9 @@ const AddItem = ({ history, firestore }) => {
             </label>
           ))}
           {matchState === true ? (
-            <p className="errorMessage">Item already exists!</p>
+            <p className="itemFeedback">Item already exists!</p>
           ) : matchState === false ? (
-            <p className="errorMessage">Adding item!</p>
+            <p className="itemFeedback">Adding item!</p>
           ) : null}
           <button type="submit" onClick={handleSubmit}>
             Add item
