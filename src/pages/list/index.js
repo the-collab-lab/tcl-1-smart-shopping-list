@@ -37,34 +37,9 @@ const List = ({ history, firestore }) => {
   //
   // Additionally, the format that the lists come back in isn't a simple array, so
   // we map through and return the .data() on each of the docs it returns.
-<<<<<<< Updated upstream
-
-  // TODO 5 use .map to run through the list of newly-stored items, for each frequencyId option create an
-  // array and push items into the correct array based on their own frequencyId value (end result: 'soon'
-  // array, 'kinda soon' array, 'not soon' array, BUT also the rest as 'uncategorized' array or similar?).
-  // using .map isntead of .filter means we only have to run through the list once to split into arrays
-  // instead of funning filter for each potential frequencyId value.
-
-  // TODO 6 once you have your arrays for each frequency option (and a bucket for items without frequency
-  // values), display/differentiate the groups however you'd like
-
-  // TODO 7 for backwards compatibility - if `frequencyId` doesn't exist on the list item, look for `value`,
-  // if neither value exists, sort as `uncategorized`
-
-  // TODO 7.5 (bonus) for even better compatibility we can EDIT the items that don't have `frequencyId` based on
-  // the `value` string we used previously (ie. remove `value` key/value pair, add `frequencyId` key/value pair),
-  // and if neither of those values exist add a `frequencyId` key with value of `null` (this step could be
-  // considered part of issue #16 )
-
-  // TODO 8 make each frequency option's list distinct to a screen reader. This article talks about accessibility
-  // in webpage structure: https://www.w3.org/WAI/tutorials/page-structure/content/ and this chrome extension that
-  // andrew mentioned at the start of the project can probably help verify whether or not they're distinct enough:
-  // https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni?hl=en-US
-=======
   //TODO 5 .filter() to find items that match the urgency index and order the groups accordingly DONE BOOM
   //TODO 6 assign color values to each level of urgency
   //TODO 7 backwords compatibility - if urgency doesn't exist, look for value
->>>>>>> Stashed changes
   const retriveItemsFromFirebase = () => {
     firestore
       .collection('items')
