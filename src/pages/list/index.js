@@ -107,10 +107,6 @@ const List = ({ history, firestore }) => {
                     : null
                 }
               >
-                <SmartLink className="item-detail-link" routeTo="/item-detail">
-                  {item.name +
-                    (item.frequency ? ' (' + item.frequency + ') ' : '')}
-                </SmartLink>
                 <style>
                   {`
                   .green {
@@ -124,6 +120,10 @@ const List = ({ history, firestore }) => {
                   }
                 `}
                 </style>
+                <SmartLink className="item-detail-link" routeTo="/item-detail">
+                  {item.name +
+                    (item.frequency ? ' (' + item.frequency + ') ' : '')}
+                </SmartLink>
               </li>
             ))}
           </ul>
