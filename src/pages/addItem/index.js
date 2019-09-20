@@ -40,7 +40,7 @@ const AddItem = ({ history, firestore }) => {
 
   if (!token) history.push('/create-list');
 
-  const [matchState, setMatchState] = useState(false);
+  const [matchState, setMatchState] = useState(null);
 
   const checkForDupes = dbList => {
     return dbList.find(
@@ -151,7 +151,6 @@ const AddItem = ({ history, firestore }) => {
           <button type="submit" onClick={handleSubmit}>
             Add item
           </button>
-          {/* the null state is for when matchState === null */}
         </form>
       </ContentWrapper>
 
