@@ -37,6 +37,7 @@ const List = ({ history, firestore }) => {
   //
   // Additionally, the format that the lists come back in isn't a simple array, so
   // we map through and return the .data() on each of the docs it returns.
+<<<<<<< Updated upstream
 
   // TODO 5 use .map to run through the list of newly-stored items, for each frequencyId option create an
   // array and push items into the correct array based on their own frequencyId value (end result: 'soon'
@@ -59,6 +60,11 @@ const List = ({ history, firestore }) => {
   // in webpage structure: https://www.w3.org/WAI/tutorials/page-structure/content/ and this chrome extension that
   // andrew mentioned at the start of the project can probably help verify whether or not they're distinct enough:
   // https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni?hl=en-US
+=======
+  //TODO 5 .filter() to find items that match the urgency index and order the groups accordingly DONE BOOM
+  //TODO 6 assign color values to each level of urgency
+  //TODO 7 backwords compatibility - if urgency doesn't exist, look for value
+>>>>>>> Stashed changes
   const retriveItemsFromFirebase = () => {
     firestore
       .collection('items')
@@ -66,10 +72,28 @@ const List = ({ history, firestore }) => {
       .get()
       .then(response => {
         const items = response.docs.map(doc => doc.data());
-        setListValue(items);
+        const urgencyFilteredItems = items.filter(item => item.frequency);
+        for (let i = 0; i < urgencyFilteredItems.length; i++) {
+          if (urgencyFilteredItems[i].frequency === 'soon') {
+            console.log(urgencyFilteredItems);
+            const shoppingItem = urgencyFilteredItems[i];
+            // const shoppingItemss = shoppingItem.setAttribute('class', 'green');
+            // console.log(shoppingItemss);
+            // shoppingItem.closest('.shoppingItem').classList.toggle('green');
+          }
+        }
+        console.log(urgencyFilteredItems[0].frequency);
+        setListValue(urgencyFilteredItems);
+        setUrgencyColor();
       })
       .catch(error => console.error('Error getting documents: ', error))
       .finally(() => setLoading(false));
+  };
+
+  const setUrgencyColor = () => {
+    const shoppingItem = document.querySelectorAll('.shoppingItem');
+    // const soonItem = shoppingItem.show('green');
+    console.log(shoppingItem);
   };
 
   // NOTE: if we DO have a token (so we can find matching list items) and loading
@@ -90,7 +114,7 @@ const List = ({ history, firestore }) => {
         <div>
           <ul>
             {list.map((item, index) => (
-              <li key={'item-' + index}>
+              <li className="shoppingItem" key={'item-' + index}>
                 <SmartLink className="item-detail-link" routeTo="/item-detail">
                   {item.name +
                     (item.frequency ? ' (' + item.frequency + ') ' : '')}
