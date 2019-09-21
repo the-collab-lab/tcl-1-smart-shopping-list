@@ -37,36 +37,41 @@ const AddItem = ({ history, firestore }) => {
   // NOTE: local state gives the value a place to live before we officially add them to the
   // app "state" (in the ListContext)
   const [frequency, setFrequency] = useState(frequencyOptions[0].value);
+  const [matchState, setMatchState] = useState(null);
 
   if (!token) history.push('/create-list');
 
-  const [matchState, setMatchState] = useState(null);
-
   const checkForDupes = dbList => {
-    return dbList.find(
-      item => item.data().name.toLowerCase() === name.toLowerCase()
-    );
+    return dbList.find(item => item.name.toLowerCase());
   };
 
   const checkItems = () => {
-    firestore
-      .collection('items')
-      .where('listToken', '==', token)
-      .get()
-      .then(response => {
-        const dupeIfFound = checkForDupes(response.docs);
-        dupeIfFound ? setMatchState(true) : setMatchState(null);
-      })
-      .catch(function(error) {
-        console.log('Error getting documents: ', error);
-      });
+    if (Array.isArray(list) && list.length > 0) {
+      console.log('in the if ', list);
+      // const dupeIfFound = checkForDupes(list);
+      // console.log('dupeIfFoundFromContext ', dupeIfFound);
+      // dupeIfFound ? setMatchState(true) : setMatchState(false);
+    } else {
+      console.log('in the else');
+      firestore
+        .collection('items')
+        .where('listToken', '==', token)
+        .get()
+        .then(response => {
+          const dupeIfFound = checkForDupes(response.docs);
+          dupeIfFound ? setMatchState(true) : setMatchState(false);
+        })
+        .catch(function(error) {
+          console.log('Error getting documents: ', error);
+        });
+    }
   };
-  const addItem = name => {
-    firestore.collection('items').add({
-      name: name,
-      listToken: token,
-    });
-  };
+  // const addItem = name => {
+  //   firestore.collection('items').add({
+  //     name: name,
+  //     listToken: token,
+  //   });
+  // };
 
   // NOTE: users won't have a list to view or add items to if they don't have a token, so
   // "push" them to where they can get started
@@ -87,28 +92,24 @@ const AddItem = ({ history, firestore }) => {
       .finally(() => setLoading(false));
   };
 
-  useEffect(() => {
-    if (name.toLowerCase() !== '') {
-      checkItems(name.toLowerCase());
-    }
-  }, [name.toLowerCase()]);
+  // useEffect(() => {
+  //   if (name.toLowerCase() !== '') {
+  //     checkItems(name.toLowerCase());
+  //   }
+  // }, [name.toLowerCase()]);
   // const [matchState, setMatchState] = useState(null); // null is neutral "nothing to check state", otherwise pass boolean
   // const [name, setName] = useState('');
   // const [token] = useState(localStorage.getItem('token'));
   const handleTextChange = event => {
     setName(event.target.value);
+    setMatchState(null);
   };
 
   const handleRadioButtonChange = event => setFrequency(event.target.value);
 
   const handleSubmit = event => {
     event.preventDefault();
-    sendNewItemToFirebase({ name, frequency, listToken: token });
-    addItem(name.toLowerCase());
     checkItems();
-    setTimeout(() => {
-      addItem(name);
-    }, 1000);
   };
 
   return (
