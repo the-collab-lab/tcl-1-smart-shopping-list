@@ -55,6 +55,15 @@ exports[`snapshot on load 1`] = `
     >
       Create Shopping List
     </button>
+    <p>
+      You can also 
+      <a
+        href="/join-list"
+      >
+        join an existing shopping list
+      </a>
+      .
+    </p>
   </section>
   <footer
     className="footer css-1i3mvty"
