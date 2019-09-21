@@ -55,7 +55,7 @@ const AddItem = ({ history, firestore }) => {
       .get()
       .then(response => {
         const dupeIfFound = checkForDupes(response.docs);
-        dupeIfFound ? setMatchState(true) : setMatchState(false);
+        dupeIfFound ? setMatchState(true) : setMatchState(null);
       })
       .catch(function(error) {
         console.log('Error getting documents: ', error);
@@ -96,7 +96,6 @@ const AddItem = ({ history, firestore }) => {
   // const [name, setName] = useState('');
   // const [token] = useState(localStorage.getItem('token'));
   const handleTextChange = event => {
-    setMatchState(null);
     setName(event.target.value);
   };
 
