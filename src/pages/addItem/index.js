@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withFirestore } from 'react-firestore';
 import {
@@ -35,7 +35,6 @@ const AddItem = ({ history, firestore }) => {
   //   const token = useContext(TokenContext).token;
   //   const setTokenValue = useContext(TokenContext).setTokenValue;
   //   const confirmToken = useContext(TokenContext).confirmToken;
-
   const { token } = useContext(TokenContext);
   const { list, setListValue } = useContext(ListContext);
 
@@ -48,35 +47,33 @@ const AddItem = ({ history, firestore }) => {
   const [frequency, setFrequency] = useState(frequencyOptions[0].value);
   const [matchState, setMatchState] = useState(null);
 
-  // SEVEN: no matter if a match is found in ListContext or in the db, we handle it the same...
-  useEffect(() => {
-    if (matchState === false) {
-      // EIGHT: if no match found and not a "null" matchState (aka not ready to be compared because
-      // we're still typing),
-      // NINE: let's build the correct format to send this item to the db!
-      const newItem = {
-        name,
-        frequency,
-        listToken: token,
-      };
-      // TEN: once we have the nicely formatted objet, SEND ALL THE THINGS TO FIREBASE! :allthethings:
-      sendNewItemToFirebase(newItem);
-    }
-  }, [matchState]);
-
   // NOTE: users won't have a list to view or add items to if they don't have a token, so
   // "push" them to where they can get started
   if (!token) history.push('/create-list');
 
+  // SEVEN: instead of use useEffect to trigger the same action for the same false state, we'll
+  // just can just call triggerSendToFirebase instead. So even now, no matter if a match is found
+  //in ListContext or in the db, we handle it the same.
+  const triggerSendToFirebase = () => {
+    setMatchState(false);
+    sendNewItemToFirebase({
+      name,
+      frequency,
+      listToken: token,
+    });
+  };
+
   const checkForDupes = dbList => {
-    return dbList.find(item => item.name.toLowerCase() === name.toLowerCase());
+    const dupeIfFound = dbList.find(
+      item => item.name.toLowerCase() === name.toLowerCase()
+    );
+    dupeIfFound ? setMatchState(true) : triggerSendToFirebase();
   };
 
   const checkItems = () => {
     if (Array.isArray(list) && list.length > 0) {
       // ONE A: check list context for an array of items
-      const dupeIfFound = checkForDupes(list);
-      dupeIfFound ? setMatchState(true) : setMatchState(false);
+      checkForDupes(list);
     } else {
       // ONE B: if no list context stored, check the db
       firestore
@@ -97,10 +94,9 @@ const AddItem = ({ history, firestore }) => {
           setListValue(normalizedList);
           // FIVE: same as line 63 now that we've tidied up the format of the list coming back from the db to be the same
           // as the format of our list stored in ListContext
-          const dupeIfFound = checkForDupes(normalizedList);
+          checkForDupes(normalizedList);
           // SIX: same as line 64, which we'll now handle for both the if and else blocks in this function inside of the
           // useEffect for matchState (above)
-          dupeIfFound ? setMatchState(true) : setMatchState(false);
         })
         .catch(function(error) {
           console.log('Error getting documents: ', error);
