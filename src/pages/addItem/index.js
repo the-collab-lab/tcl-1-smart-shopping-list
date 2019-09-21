@@ -96,8 +96,8 @@ const AddItem = ({ history, firestore }) => {
   // const [name, setName] = useState('');
   // const [token] = useState(localStorage.getItem('token'));
   const handleTextChange = event => {
-    setName(event.target.value);
     setMatchState(null);
+    setName(event.target.value);
   };
 
   const handleRadioButtonChange = event => setFrequency(event.target.value);
@@ -148,9 +148,7 @@ const AddItem = ({ history, firestore }) => {
           ) : matchState === false ? (
             <p className="itemFeedback">Adding item!</p>
           ) : null}
-          <button type="submit" onClick={handleSubmit}>
-            Add item
-          </button>
+          <button type="submit">Add item</button>
         </form>
       </ContentWrapper>
 
