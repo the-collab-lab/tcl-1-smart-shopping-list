@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const ListContext = createContext({
@@ -46,7 +46,6 @@ const ListProvider = ({ children }) => {
   // NOTE: under the hood it's really just a useState hook  with some
   // extra features managing the state of our application.
   const [list, setList] = useState(listValueReset);
-
 
   // NOTE: Here you can see that behind our concisely named provider component
   // (<ListContext /> in this case) is the stock ListContext Provider syntax

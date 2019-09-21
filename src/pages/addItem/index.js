@@ -54,7 +54,6 @@ const AddItem = ({ history, firestore }) => {
       // EIGHT: if no match found and not a "null" matchState (aka not ready to be compared because
       // we're still typing),
       // NINE: let's build the correct format to send this item to the db!
-
       const newItem = {
         name,
         frequency,
@@ -76,12 +75,10 @@ const AddItem = ({ history, firestore }) => {
   const checkItems = () => {
     if (Array.isArray(list) && list.length > 0) {
       // ONE A: check list context for an array of items
-      console.log('in the if ', list);
       const dupeIfFound = checkForDupes(list);
       dupeIfFound ? setMatchState(true) : setMatchState(false);
     } else {
       // ONE B: if no list context stored, check the db
-      console.log('in the else');
       firestore
         .collection('items')
         .where('listToken', '==', token)
