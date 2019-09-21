@@ -65,6 +65,8 @@ const CreateList = ({ history, firestore }) => {
         <button className="create-list-link" onClick={handleClick}>
           Create Shopping List
         </button>
+        <p>You can also <a href="/join-list">join an existing shopping list</a>.</p>
+
       </ContentWrapper>
 
       <Footer />
