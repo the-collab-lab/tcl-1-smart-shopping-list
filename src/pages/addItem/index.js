@@ -99,7 +99,7 @@ const AddItem = ({ history, firestore }) => {
           // useEffect for matchState (above)
         })
         .catch(function(error) {
-          console.log('Error getting documents: ', error);
+          console.error('Error getting documents: ', error);
         });
     }
   };
