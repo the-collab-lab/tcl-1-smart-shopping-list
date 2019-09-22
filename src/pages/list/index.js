@@ -11,6 +11,7 @@ import {
   PageWrapper,
   SmartLink,
 } from '../../components';
+import { frequencyOptions } from '../../lib/frequency';
 
 const List = ({ history, firestore }) => {
   // NOTE: the line below is a destructuring declaration, which gives us a more concise way of
@@ -70,7 +71,9 @@ const List = ({ history, firestore }) => {
       .get()
       .then(response => {
         const items = response.docs.map(doc => doc.data());
+        console.log('list', { items });
         const urgencyFilteredItems = items.filter(item => item.frequency);
+        console.log('list', { urgencyFilteredItems });
         setListValue(urgencyFilteredItems);
       })
       .catch(error => console.error('Error getting documents: ', error))
