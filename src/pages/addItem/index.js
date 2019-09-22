@@ -24,8 +24,11 @@ const AddItem = ({ history, firestore }) => {
   const { token } = useContext(TokenContext);
   const { list, setListValue } = useContext(ListContext);
 
-  // NOTE: setting this particular component's private loading state
+  // NOTE: setting this particular component's private loadingState and matchState, which
+  // are not values that will be passed to firebase, they only control the visual appearance
+  // of this component
   const [loading, setLoading] = useState(false);
+  const [matchState, setMatchState] = useState(null);
 
   // NOTE: local state gives the value a place to live before we officially add them to the
   // app "state" (in the ListContext)
@@ -35,6 +38,76 @@ const AddItem = ({ history, firestore }) => {
   // NOTE: users won't have a list to view or add items to if they don't have a token, so
   // "push" them to where they can get started
   if (!token) history.push('/create-list');
+
+  const handleTextChange = event => {
+    setName(event.target.value);
+    setMatchState(null);
+  };
+
+  const handleRadioButtonChange = event => {
+    // NOTE: the id gets turned into a string, this ensures we're checking a number vs a number otherwise deep equal fails
+    const valueFromsStringToNumber = Number(event.target.value);
+    setFrequencyId(valueFromsStringToNumber);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    checkItems();
+  };
+
+  const checkItems = () => {
+    if (Array.isArray(list) && list.length > 0) {
+      checkForDupes(list);
+    } else {
+      firestore
+        .collection('items')
+        .where('listToken', '==', token)
+        .get()
+        // NOTE: TADA! this is how we handle async code! This request to get items with matching listToken
+        // from the db returns a promise, which has three callbacks: then (which is basically "if success", catch
+        // (if an error occured in request), and finally (which will run after EITHER then or catch, can be a way
+        // to wrap things up if the same cleanup steps are required for both success and error results)
+        .then(response => {
+          // NOTE: we need to normalize this "list", the info coming back from the db comes back with response.doc
+          // as a list, BUT each of the items in the list needs to be "unpacked" by running .data() on it (hence
+          // where the item.data().name stuff came from earlier in our debugging)
+          const normalizedList = response.docs.map(doc => doc.data());
+          console.log({ normalizedList });
+          setListValue(normalizedList);
+          checkForDupes(normalizedList);
+        })
+        .catch(function(error) {
+          console.error('Error getting documents: ', error);
+        });
+    }
+  };
+
+  const checkForDupes = dbList => {
+    const dupeIfFound = dbList.find(
+      item => item.name.toLowerCase() === name.toLowerCase()
+    );
+    dupeIfFound ? setMatchState(true) : triggerSendToFirebase();
+  };
+
+  // NOTE: instead of useing the useEffect to trigger the same action for the same false matchState, we'll
+  // just can just call triggerSendToFirebase instead. So even now, no matter if a match is found
+  // in ListContext or in the db, we handle it the same.
+  const triggerSendToFirebase = () => {
+    setMatchState(false);
+    console.log("this is the object we're sending to firebase: ", {
+      name,
+      frequencyId,
+      listToken: token,
+      dateAdded: Date.now(),
+    });
+
+    sendNewItemToFirebase({
+      name,
+      frequencyId,
+      listToken: token,
+      dateAdded: Date.now(),
+    });
+  };
 
   const sendNewItemToFirebase = item => {
     setLoading(true);
@@ -51,30 +124,6 @@ const AddItem = ({ history, firestore }) => {
       })
       .catch(error => console.error('Error getting documents: ', error))
       .finally(() => setLoading(false));
-  };
-
-  const setUrgency = id => {
-    const itemObject = {
-      name,
-      frequencyId,
-      listToken: token,
-      dateAdded: Date.now(),
-    };
-    console.log("this is the object we're sending to firebase: ", itemObject);
-    sendNewItemToFirebase(itemObject);
-  };
-
-  const handleTextChange = event => setName(event.target.value);
-
-  const handleRadioButtonChange = event => {
-    // NOTE: the id gets turned into a string, this ensures we're checking a number vs a number otherwise deep equal fails
-    const valueFromsStringToNumber = Number(event.target.value);
-    setFrequencyId(valueFromsStringToNumber);
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    setUrgency();
   };
 
   return (
@@ -108,6 +157,11 @@ const AddItem = ({ history, firestore }) => {
               {option.display}
             </label>
           ))}
+          {matchState === true ? (
+            <p className="itemFeedback">Item already exists!</p>
+          ) : matchState === false ? (
+            <p className="itemFeedback">Adding item!</p>
+          ) : null}
           <button type="submit">Add item</button>
         </form>
       </ContentWrapper>

@@ -4,11 +4,14 @@ import List from './pages/list';
 import AddItem from './pages/addItem';
 import CreateList from './pages/createList';
 import ItemDetail from './pages/itemDetail';
+import JoinList from './pages/joinList';
+
 
 const Router = props => {
   const routes = [
     { view: AddItem, path: '/add-item' },
     { view: CreateList, path: '/create-list' },
+    { view: JoinList, path: '/join-list' },
     { view: ItemDetail, path: '/item-detail' },
     { view: List, path: undefined },
     // NOTE: by not passing a path to the List component, this

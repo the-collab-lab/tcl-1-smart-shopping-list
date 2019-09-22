@@ -39,28 +39,28 @@ exports[`snapshot on load 1`] = `
   <section
     className="content-wrapper css-1xpf03y"
   >
-    <h2
-      className="welcomeTitle"
+    <form
+      onSubmit={[Function]}
     >
-      Welcome to your smart shopping list!
-    </h2>
-    <h3
-      className="tagline"
-    >
-      Click "Create Shopping Lists" to start.
-    </h3>
-    <button
-      className="create-list-link"
-      onClick={[Function]}
-    >
-      Create Shopping List
-    </button>
+      <label>
+        List Token:
+        <input
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </label>
+      <input
+        type="submit"
+        value="Submit"
+      />
+    </form>
     <p>
       You can also 
       <a
-        href="/join-list"
+        href="/create-list"
       >
-        join an existing shopping list
+        create a new shopping list
       </a>
       .
     </p>

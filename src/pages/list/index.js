@@ -11,6 +11,7 @@ import {
   PageWrapper,
   SmartLink,
 } from '../../components';
+import { frequencyOptions } from '../../lib/frequency';
 
 const List = ({ history, firestore }) => {
   // NOTE: the line below is a destructuring declaration, which gives us a more concise way of
@@ -38,11 +39,14 @@ const List = ({ history, firestore }) => {
   //
   // Additionally, the format that the lists come back in isn't a simple array, so
   // we map through and return the .data() on each of the docs it returns.
+
   // TODO 5 use .map to run through the list of newly-stored items, for each frequencyId option create an
   // array and push items into the correct array based on their own frequencyId value (end result: 'soon'
   // array, 'kinda soon' array, 'not soon' array, BUT also the rest as 'uncategorized' array or similar?).
   // using .map isntead of .filter means we only have to run through the list once to split into arrays
-  // instead of funning filter for each potential frequencyId value.
+  // instead of running .filter for each potential frequencyId values in order to find items that fit within
+  // each. going past that, each array could have .sort run on it in order of how many days are left in their
+  // timeline (min and max date range are stored in frequencyOptions) since their dateAdded value.
 
   // TODO 6 once you have your arrays for each frequency option (and a bucket for items without frequency
   // values), display/differentiate the groups however you'd like
@@ -70,7 +74,12 @@ const List = ({ history, firestore }) => {
       .get()
       .then(response => {
         const items = response.docs.map(doc => doc.data());
-        const urgencyFilteredItems = items.filter(item => item.frequency);
+        const urgencyFilteredItems = items.sort((a, b) => {
+          if (a.frequencyId < b.frequencyId) return -1;
+          if (a.frequencyId > b.frequencyId) return 1;
+          return 0;
+        });
+        console.log('list', urgencyFilteredItems);
         setListValue(urgencyFilteredItems);
       })
       .catch(error => console.error('Error getting documents: ', error))
@@ -98,11 +107,11 @@ const List = ({ history, firestore }) => {
               <li
                 key={'item-' + index}
                 className={
-                  item.frequency === 'soon'
+                  item.frequencyId === 0
                     ? 'green'
-                    : item.frequency === 'kind-of-soon'
+                    : item.frequencyId === 1
                     ? 'yellow'
-                    : item.frequency === 'not-soon'
+                    : item.frequencyId === 2
                     ? 'red'
                     : null
                 }
@@ -122,7 +131,9 @@ const List = ({ history, firestore }) => {
                 </style>
                 <SmartLink className="item-detail-link" routeTo="/item-detail">
                   {item.name +
-                    (item.frequency ? ' (' + item.frequency + ') ' : '')}
+                    (item.frequencyId > -1
+                      ? ' (' + frequencyOptions[item.frequencyId].display + ') '
+                      : null)}
                 </SmartLink>
               </li>
             ))}
