@@ -61,3 +61,9 @@ const JoinList = ({ history, firestore }) => {
 };
 
 export default withFirestore(JoinList);
+
+JoinList.propTypes = {
+  history: PropTypes.object.isRequired,
+  firestore: PropTypes.object.isRequired,
+};
+JoinList.defaultProps = {};
