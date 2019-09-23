@@ -28,7 +28,7 @@ const JoinList = ({ history, firestore }) => {
         }
       })
       .catch(function(error) {
-        console.log('Error getting document:', error);
+        console.error('Error getting document:', error);
       });
   };
 
@@ -36,7 +36,6 @@ const JoinList = ({ history, firestore }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(token);
     verifyList(token);
   };
 

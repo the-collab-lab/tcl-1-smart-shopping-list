@@ -72,7 +72,6 @@ const AddItem = ({ history, firestore }) => {
           // as a list, BUT each of the items in the list needs to be "unpacked" by running .data() on it (hence
           // where the item.data().name stuff came from earlier in our debugging)
           const normalizedList = response.docs.map(doc => doc.data());
-          console.log({ normalizedList });
           setListValue(normalizedList);
           checkForDupes(normalizedList);
         })
@@ -94,13 +93,6 @@ const AddItem = ({ history, firestore }) => {
   // in ListContext or in the db, we handle it the same.
   const triggerSendToFirebase = () => {
     setMatchState(false);
-    console.log("this is the object we're sending to firebase: ", {
-      name,
-      frequencyId,
-      listToken: token,
-      dateAdded: Date.now(),
-    });
-
     sendNewItemToFirebase({
       name,
       frequencyId,
@@ -116,7 +108,6 @@ const AddItem = ({ history, firestore }) => {
       .collection('items')
       .add(item)
       .then(response => {
-        console.log('response from firebase after the add: ', response);
         const merged = [...list, ...[item]];
         setListValue(merged);
         setName('');
