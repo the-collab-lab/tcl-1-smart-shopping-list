@@ -60,7 +60,7 @@ exports[`addItem DOES NOT contain items snapshot on load 1`] = `
           name="frequency"
           onChange={[Function]}
           type="radio"
-          value="soon"
+          value={0}
         />
         Soon
       </label>
@@ -71,7 +71,7 @@ exports[`addItem DOES NOT contain items snapshot on load 1`] = `
           name="frequency"
           onChange={[Function]}
           type="radio"
-          value="kind-of-soon"
+          value={1}
         />
         Kind of soon
       </label>
@@ -82,7 +82,7 @@ exports[`addItem DOES NOT contain items snapshot on load 1`] = `
           name="frequency"
           onChange={[Function]}
           type="radio"
-          value="not-soon"
+          value={2}
         />
         Not Soon
       </label>
@@ -176,7 +176,7 @@ exports[`addItem DOES contain items snapshot on load 1`] = `
           name="frequency"
           onChange={[Function]}
           type="radio"
-          value="soon"
+          value={0}
         />
         Soon
       </label>
@@ -187,7 +187,7 @@ exports[`addItem DOES contain items snapshot on load 1`] = `
           name="frequency"
           onChange={[Function]}
           type="radio"
-          value="kind-of-soon"
+          value={1}
         />
         Kind of soon
       </label>
@@ -198,7 +198,7 @@ exports[`addItem DOES contain items snapshot on load 1`] = `
           name="frequency"
           onChange={[Function]}
           type="radio"
-          value="not-soon"
+          value={2}
         />
         Not Soon
       </label>
@@ -292,7 +292,7 @@ exports[`addItem is not provided any context values, redirects snapshot on load 
           name="frequency"
           onChange={[Function]}
           type="radio"
-          value="soon"
+          value={0}
         />
         Soon
       </label>
@@ -303,7 +303,7 @@ exports[`addItem is not provided any context values, redirects snapshot on load 
           name="frequency"
           onChange={[Function]}
           type="radio"
-          value="kind-of-soon"
+          value={1}
         />
         Kind of soon
       </label>
@@ -314,7 +314,7 @@ exports[`addItem is not provided any context values, redirects snapshot on load 
           name="frequency"
           onChange={[Function]}
           type="radio"
-          value="not-soon"
+          value={2}
         />
         Not Soon
       </label>

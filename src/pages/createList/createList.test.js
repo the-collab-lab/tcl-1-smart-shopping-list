@@ -11,7 +11,7 @@ it('renders without crashing', () => {
   ReactDOM.render(
     <FirestoreProvider firebase={firebase}>
       <BrowserRouter>
-        <CreateList />
+        <CreateList history={{ push: jest.fn() }} />
       </BrowserRouter>
     </FirestoreProvider>,
     div
@@ -23,7 +23,7 @@ it('snapshot on load', () => {
   const tree = TestRenderer.create(
     <FirestoreProvider firebase={firebase}>
       <BrowserRouter>
-        <CreateList />
+        <CreateList history={{ push: jest.fn() }} />
       </BrowserRouter>
     </FirestoreProvider>
   );

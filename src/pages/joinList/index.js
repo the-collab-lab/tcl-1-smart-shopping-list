@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { ContentWrapper, Header, Footer, PageWrapper } from '../../components';
 import { withFirestore } from 'react-firestore';
 import { TokenContext } from '../../contexts';
@@ -28,7 +29,7 @@ const JoinList = ({ history, firestore }) => {
         }
       })
       .catch(function(error) {
-        console.log('Error getting document:', error);
+        console.error('Error getting document:', error);
       });
   };
 
@@ -36,7 +37,6 @@ const JoinList = ({ history, firestore }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(token);
     verifyList(token);
   };
 
@@ -62,3 +62,9 @@ const JoinList = ({ history, firestore }) => {
 };
 
 export default withFirestore(JoinList);
+
+JoinList.propTypes = {
+  history: PropTypes.object.isRequired,
+  firestore: PropTypes.object.isRequired,
+};
+JoinList.defaultProps = {};
