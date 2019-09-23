@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { ContentWrapper, Header, Footer, PageWrapper } from '../../components';
 import { withFirestore } from 'react-firestore';
 import { TokenContext } from '../../contexts';
