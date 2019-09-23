@@ -50,7 +50,6 @@ const identifyInactiveItems = item => {
   // NOTE: do not return item, we want it excluded from this filter's results, but we
   // do want to push it into the inactive items list.
   if (doubleMaxDate && doubleMaxDate < startOfToday) return true;
-  else return false;
 };
 
 export { frequencyOptions, sortOnFrequencyAndActivity, identifyInactiveItems };
