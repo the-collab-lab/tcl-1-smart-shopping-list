@@ -14,6 +14,7 @@ import {
 import {
   frequencyOptions,
   sortOnFrequencyAndActivity,
+  identifyInactiveItems,
 } from '../../lib/frequency';
 
 const List = ({ history, firestore }) => {
@@ -117,7 +118,9 @@ const List = ({ history, firestore }) => {
               <li
                 key={'item-' + index}
                 className={
-                  item.frequencyId === 0
+                  identifyInactiveItems(item)
+                    ? ''
+                    : item.frequencyId === 0
                     ? 'green'
                     : item.frequencyId === 1
                     ? 'yellow'
