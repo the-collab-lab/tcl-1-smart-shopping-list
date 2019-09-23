@@ -88,7 +88,7 @@ const AddItem = ({ history, firestore }) => {
     dupeIfFound ? setMatchState(true) : triggerSendToFirebase();
   };
 
-  // NOTE: instead of useing the useEffect to trigger the same action for the same false matchState, we'll
+  // NOTE: instead of using the useEffect to trigger the same action for the same false matchState, we'll
   // just can just call triggerSendToFirebase instead. So even now, no matter if a match is found
   // in ListContext or in the db, we handle it the same.
   const triggerSendToFirebase = () => {
