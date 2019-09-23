@@ -11,7 +11,10 @@ import {
   PageWrapper,
   SmartLink,
 } from '../../components';
-import { frequencyOptions } from '../../lib/frequency';
+import {
+  frequencyOptions,
+  sortOnFrequencyAndActivity,
+} from '../../lib/frequency';
 
 const List = ({ history, firestore }) => {
   // NOTE: the line below is a destructuring declaration, which gives us a more concise way of
@@ -67,23 +70,30 @@ const List = ({ history, firestore }) => {
   //TODO 5 .filter() to find items that match the urgency index and order the groups accordingly DONE BOOM
   //TODO 6 assign color values to each level of urgency
   //TODO 7 backwords compatibility - if urgency doesn't exist, look for value
-  const retriveItemsFromFirebase = () => {
-    firestore
-      .collection('items')
-      .where('listToken', '==', token)
-      .get()
-      .then(response => {
-        const items = response.docs.map(doc => doc.data());
-        const urgencyFilteredItems = items.sort((a, b) => {
-          if (a.frequencyId < b.frequencyId) return -1;
-          if (a.frequencyId > b.frequencyId) return 1;
-          return 0;
+  const retrieveItemList = () => {
+    if (Array.isArray(list) && list.length > 0) {
+      sortAndSaveList(list);
+    } else {
+      firestore
+        .collection('items')
+        .where('listToken', '==', token)
+        .get()
+        .then(response => {
+          const items = response.docs.map(doc => doc.data());
+          sortAndSaveList(items);
+        })
+        .catch(error => {
+          console.error('Error getting documents: ', error);
+          setLoading(false);
         });
-        console.log('list', urgencyFilteredItems);
-        setListValue(urgencyFilteredItems);
-      })
-      .catch(error => console.error('Error getting documents: ', error))
-      .finally(() => setLoading(false));
+    }
+  };
+
+  const sortAndSaveList = list => {
+    const sortedList = sortOnFrequencyAndActivity(list);
+
+    setListValue(sortedList);
+    setLoading(false);
   };
 
   // NOTE: if we DO have a token (so we can find matching list items) and loading
@@ -92,8 +102,8 @@ const List = ({ history, firestore }) => {
   // CRITICAL: if we don't look for ALL these conditions, we risk the request being
   // (at best) run twice, or at worst, over and over and over and that's tough on the
   // wallet. Checking `!list` or `list == []` or `list === []` all result in forever-load.
-  if (!!token && loading && list.length === 0) retriveItemsFromFirebase();
-  if (!!token && loading && list.length > 0) setLoading(false);
+  if (!!token && loading && list.length === 0) retrieveItemList();
+  if (!!token && loading && list.length > 0) sortAndSaveList(list);
 
   return (
     <PageWrapper>
