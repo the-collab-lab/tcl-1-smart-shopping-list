@@ -20,7 +20,7 @@ const AddItem = ({ history, firestore }) => {
   // up declarations, like this:
   //   const token = useContext(TokenContext).token;
   //   const setTokenValue = useContext(TokenContext).setTokenValue;
-  //   const confirmToken = use Context(TokenContext).confirmToken;
+  //   const confirmToken = useContext(TokenContext).confirmToken;
   const { token } = useContext(TokenContext);
   const { list, setListValue } = useContext(ListContext);
 
