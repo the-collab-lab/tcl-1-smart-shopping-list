@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot on load 1`] = `
+<footer
+  className="footer css-rxnh45"
+>
+  <section>
+    <p>
+      No purchases just yet.
+    </p>
+    <a
+      className="add-item-link css-gq9b4g"
+      href="/add-item"
+      onClick={[Function]}
+      visualstate="default"
+    >
+      Add Item
+    </a>
+  </section>
+</footer>
+`;

@@ -15,6 +15,7 @@ import {
   sortOnFrequencyAndActivity,
   identifyInactiveItems,
 } from '../../lib/frequency';
+import Welcome from '../../components/welcome';
 
 const List = ({ history, firestore }) => {
   // NOTE: the line below is a destructuring declaration, which gives us a more concise way of
@@ -111,25 +112,29 @@ const List = ({ history, firestore }) => {
 
       <ContentWrapper>
         {loading && <Loading />}
-        <div>
-          <ul>
-            {list.map((item, index) => (
-              <li
-                key={'item-' + index}
-                className={
-                  identifyInactiveItems(item)
-                    ? ''
-                    : item.frequencyId === 0
-                    ? 'green'
-                    : item.frequencyId === 1
-                    ? 'yellow'
-                    : item.frequencyId === 2
-                    ? 'red'
-                    : null
-                }
-              >
-                <style>
-                  {`
+
+        {list.length === 0 ? (
+          <Welcome />
+        ) : (
+          <div>
+            <ul>
+              {list.map((item, index) => (
+                <li
+                  key={'item-' + index}
+                  className={
+                    identifyInactiveItems(item)
+                      ? ''
+                      : item.frequencyId === 0
+                      ? 'green'
+                      : item.frequencyId === 1
+                      ? 'yellow'
+                      : item.frequencyId === 2
+                      ? 'red'
+                      : null
+                  }
+                >
+                  <style>
+                    {`
                   .green {
                     background-color: rgb(151, 245, 151, .8);
                   }
@@ -140,19 +145,24 @@ const List = ({ history, firestore }) => {
                     background-color: rgb(249, 120, 120, .8);
                   }
                 `}
-                </style>
-                <SmartLink className="item-detail-link" routeTo="/item-detail">
-                  {item.name +
-                    (item.frequencyId > -1
-                      ? ' (' + frequencyOptions[item.frequencyId].display + ') '
-                      : null)}
-                </SmartLink>
-              </li>
-            ))}
-          </ul>
-        </div>
+                  </style>
+                  <SmartLink
+                    className="item-detail-link"
+                    routeTo="/item-detail"
+                  >
+                    {item.name +
+                      (item.frequencyId > -1
+                        ? ' (' +
+                          frequencyOptions[item.frequencyId].display +
+                          ') '
+                        : null)}
+                  </SmartLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </ContentWrapper>
-
       <Footer />
     </PageWrapper>
   );
