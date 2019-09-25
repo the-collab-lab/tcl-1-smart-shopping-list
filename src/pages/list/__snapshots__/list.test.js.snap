@@ -44,9 +44,23 @@ exports[`list DOES NOT contain items snapshot on load 1`] = `
     >
       Loading...
     </p>
-    <div>
-      <ul />
-    </div>
+    <footer
+      className="footer css-rxnh45"
+    >
+      <section>
+        <p>
+          No purchases just yet.
+        </p>
+        <a
+          className="add-item-link css-gq9b4g"
+          href="/add-item"
+          onClick={[Function]}
+          visualstate="default"
+        >
+          Add Item
+        </a>
+      </section>
+    </footer>
   </section>
   <footer
     className="footer css-1i3mvty"
@@ -115,9 +129,23 @@ exports[`list DOES contain items snapshot on load 1`] = `
     >
       Loading...
     </p>
-    <div>
-      <ul />
-    </div>
+    <footer
+      className="footer css-rxnh45"
+    >
+      <section>
+        <p>
+          No purchases just yet.
+        </p>
+        <a
+          className="add-item-link css-gq9b4g"
+          href="/add-item"
+          onClick={[Function]}
+          visualstate="default"
+        >
+          Add Item
+        </a>
+      </section>
+    </footer>
   </section>
   <footer
     className="footer css-1i3mvty"
@@ -186,9 +214,23 @@ exports[`list is only provided list context values, redirects snapshot on load 1
     >
       Loading...
     </p>
-    <div>
-      <ul />
-    </div>
+    <footer
+      className="footer css-rxnh45"
+    >
+      <section>
+        <p>
+          No purchases just yet.
+        </p>
+        <a
+          className="add-item-link css-gq9b4g"
+          href="/add-item"
+          onClick={[Function]}
+          visualstate="default"
+        >
+          Add Item
+        </a>
+      </section>
+    </footer>
   </section>
   <footer
     className="footer css-1i3mvty"
