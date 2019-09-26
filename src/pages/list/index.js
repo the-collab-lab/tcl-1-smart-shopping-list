@@ -108,9 +108,17 @@ const List = ({ history, firestore }) => {
 
   const filterItems = (e) => {
     e.preventDefault();
-    console.log(e.target.value)
+    checkForMatches(e.target.value)
     setFilterInput(e.target.value)
   }
+
+  const checkForMatches = (string) => {
+    const matchArray = list.filter((item) => {
+      if (item.name.toLowerCase().indexOf(string.toLowerCase()) !== -1) return item;
+    })
+    console.log({ matchArray })
+  }
+
   return (
     <PageWrapper>
       <Header />
@@ -121,7 +129,7 @@ const List = ({ history, firestore }) => {
         {list.length === 0 ? (
           <Welcome />
         ) : (
-          <div>
+            <div>
               <label>
                 type to filter
             <input type='text' placeholder='apples' onChange={e => filterItems(e)} value={filterInput}/>
@@ -130,23 +138,23 @@ const List = ({ history, firestore }) => {
               </label>
               <button onClick={e => setFilterInput('')}>Clear</button>
               <ul id='mylist'>
-              {list.map((item, index) => (
-                <li
-                  key={'item-' + index}
-                  className={
-                    identifyInactiveItems(item)
-                      ? ''
-                      : item.frequencyId === 0
-                      ? 'green'
-                      : item.frequencyId === 1
-                      ? 'yellow'
-                      : item.frequencyId === 2
-                      ? 'red'
-                      : null
-                  }
-                >
-                  <style>
-                    {`
+                {list.map((item, index) => (
+                  <li
+                    key={'item-' + index}
+                    className={
+                      identifyInactiveItems(item)
+                        ? ''
+                        : item.frequencyId === 0
+                          ? 'green'
+                          : item.frequencyId === 1
+                            ? 'yellow'
+                            : item.frequencyId === 2
+                              ? 'red'
+                              : null
+                    }
+                  >
+                    <style>
+                      {`
                   .green {
                     background-color: rgb(151, 245, 151, .8);
                   }
@@ -157,23 +165,23 @@ const List = ({ history, firestore }) => {
                     background-color: rgb(249, 120, 120, .8);
                   }
                 `}
-                  </style>
-                  <SmartLink
-                    className="item-detail-link"
-                    routeTo="/item-detail"
-                  >
-                    {item.name +
-                      (item.frequencyId > -1
-                        ? ' (' +
+                    </style>
+                    <SmartLink
+                      className="item-detail-link"
+                      routeTo="/item-detail"
+                    >
+                      {item.name +
+                        (item.frequencyId > -1
+                          ? ' (' +
                           frequencyOptions[item.frequencyId].display +
                           ') '
-                        : null)}
-                  </SmartLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+                          : null)}
+                    </SmartLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
       </ContentWrapper>
       <Footer />
     </PageWrapper>
