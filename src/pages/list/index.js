@@ -32,7 +32,7 @@ const List = ({ history, firestore }) => {
 
   // NOTE: setting this particular component's private loading state
   const [loading, setLoading] = useState(true);
-
+  const [filterInput, setFilterInput] = useState('')
   // NOTE: users won't have a list to view or add items to if they don't have a token, so
   // "push" them to where they can get started
   if (!token) history.push('/create-list');
@@ -105,7 +105,11 @@ const List = ({ history, firestore }) => {
   // wallet. Checking `!list` or `list == []` or `list === []` all result in forever-load.
   if (!!token && loading && list.length === 0) retrieveItemList();
   if (!!token && loading && list.length > 0) sortAndSaveList(list);
-
+  const filterItems = (e) => {
+    e.preventDefault();
+    console.log(e.target.value)
+    setFilterInput(e.target.value)
+  }
   return (
     <PageWrapper>
       <Header />
@@ -117,7 +121,13 @@ const List = ({ history, firestore }) => {
           <Welcome />
         ) : (
           <div>
-            <ul>
+              <label>
+                type to filter
+            <input type='text' placeholder='apples' onChange={e => filterItems(e)} value={filterInput}/>
+
+
+              </label>
+              <ul id='mylist'>
               {list.map((item, index) => (
                 <li
                   key={'item-' + index}
