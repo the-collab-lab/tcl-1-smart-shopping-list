@@ -33,6 +33,7 @@ const List = ({ history, firestore }) => {
   // NOTE: setting this particular component's private loading state
   const [loading, setLoading] = useState(true);
   const [filterInput, setFilterInput] = useState('')
+  const [matches, setMatches] = useState([])
   // NOTE: users won't have a list to view or add items to if they don't have a token, so
   // "push" them to where they can get started
   if (!token) history.push('/create-list');
@@ -117,7 +118,13 @@ const List = ({ history, firestore }) => {
       if (item.name.toLowerCase().indexOf(string.toLowerCase()) !== -1) return item;
     })
     console.log({ matchArray })
+    setMatches(matchArray)
   }
+    const resetListAndMatches = () => {
+      setFilterInput('')
+      setMatches([])
+
+    }
 
   return (
     <PageWrapper>
@@ -130,13 +137,16 @@ const List = ({ history, firestore }) => {
           <Welcome />
         ) : (
             <div>
+              {matches.map(match  => {
+                return match.name
+              }).join(', ')}
               <label>
                 type to filter
             <input type='text' placeholder='apples' onChange={e => filterItems(e)} value={filterInput}/>
 
 
               </label>
-              <button onClick={e => setFilterInput('')}>Clear</button>
+              <button onClick={e => resetListAndMatches()}>Clear</button>
               <ul id='mylist'>
                 {list.map((item, index) => (
                   <li
