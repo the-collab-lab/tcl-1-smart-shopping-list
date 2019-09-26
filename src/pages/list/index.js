@@ -105,6 +105,7 @@ const List = ({ history, firestore }) => {
   // wallet. Checking `!list` or `list == []` or `list === []` all result in forever-load.
   if (!!token && loading && list.length === 0) retrieveItemList();
   if (!!token && loading && list.length > 0) sortAndSaveList(list);
+
   const filterItems = (e) => {
     e.preventDefault();
     console.log(e.target.value)
@@ -127,6 +128,7 @@ const List = ({ history, firestore }) => {
 
 
               </label>
+              <button onClick={e => setFilterInput('')}>Clear</button>
               <ul id='mylist'>
               {list.map((item, index) => (
                 <li
