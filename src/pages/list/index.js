@@ -11,7 +11,6 @@ import {
   SmartLink,
 } from '../../components';
 import {
-  frequencyOptions,
   displayFrequency,
   sortOnFrequencyAndActivity,
   identifyInactiveItems,
