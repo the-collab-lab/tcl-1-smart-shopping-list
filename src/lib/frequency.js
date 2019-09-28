@@ -54,6 +54,22 @@ const backwardCompatibleFreqId = list => {
   });
 };
 
+const identifyInactiveItems = item => {
+  const { frequencyId, dateAdded } = item;
+
+  const startOfAddDay = getStartOfDay(dateAdded);
+  const startOfToday = getStartOfDay();
+  const max = frequencyOptions[frequencyId]
+    ? frequencyOptions[frequencyId].daysUntilDueMax
+    : null;
+  const doubleMaxDate = max ? moment(startOfAddDay).add(max * 2, 'days') : null;
+
+  // NOTE: do not return item, we want it excluded from this filter's results, but we
+  // do want to push it into the inactive items list.
+  if (doubleMaxDate && doubleMaxDate < startOfToday) return true;
+  return false;
+};
+
 // NOTE: item considered inactive once it reaches 2n days past due where n
 // equals it's previous frequency value's maximum end of the range
 const sortOnFrequencyAndActivity = list => {
@@ -65,22 +81,9 @@ const sortOnFrequencyAndActivity = list => {
     // NOTE: then, if neither item is identified as inactive, sort on frequencyId
     if (a.frequencyId < b.frequencyId) return -1;
     if (a.frequencyId > b.frequencyId) return 1;
+    // NOTE: if they have the same frequencyId, don't adjust their order
     return 0;
   });
-};
-
-const identifyInactiveItems = item => {
-  const { frequencyId, dateAdded } = item;
-
-  const startOfAddDay = getStartOfDay(dateAdded);
-  const startOfToday = getStartOfDay();
-  const max = frequencyOptions[frequencyId].daysUntilDueMax || null;
-  const doubleMaxDate = max ? moment(startOfAddDay).add(max * 2, 'days') : null;
-
-  // NOTE: do not return item, we want it excluded from this filter's results, but we
-  // do want to push it into the inactive items list.
-  if (doubleMaxDate && doubleMaxDate < startOfToday) return true;
-  return false;
 };
 
 const displayFrequency = item => {
