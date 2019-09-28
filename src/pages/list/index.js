@@ -106,6 +106,14 @@ const List = ({ history, firestore }) => {
     setMatches([]);
   };
 
+  const whichList = () => {
+    const hasMatches = Array.isArray(matches) && matches.length;
+
+    if (hasMatches) return matches;
+    if (!hasMatches && userInput === '') return list;
+    return [];
+  };
+
   const colorCodeByFrequency = item => {
     if (identifyInactiveItems(item)) return {};
 
@@ -143,11 +151,10 @@ const List = ({ history, firestore }) => {
             </label>
             <button onClick={e => resetListAndMatches()}>Clear</button>
             <ul id="mylist">
-              {(matches.length ? matches : filterInput === '' ? list : []).map(
-                (item, index) => (
-                  <li key={'item-' + index} style={colorCodeByFrequency(item)}>
-                    <style>
-                      {`
+              {whichList().map((item, index) => (
+                <li key={'item-' + index} style={colorCodeByFrequency(item)}>
+                  <style>
+                    {`
                   .green {
                     background-color: rgb(151, 245, 151, .8);
                   }
@@ -158,16 +165,15 @@ const List = ({ history, firestore }) => {
                     background-color: rgb(249, 120, 120, .8);
                   }
                 `}
-                    </style>
-                    <SmartLink
-                      className="item-detail-link"
-                      routeTo="/item-detail"
-                    >
-                      {item.name + displayFrequency(item)}
-                    </SmartLink>
-                  </li>
-                )
-              )}
+                  </style>
+                  <SmartLink
+                    className="item-detail-link"
+                    routeTo="/item-detail"
+                  >
+                    {item.name + displayFrequency(item)}
+                  </SmartLink>
+                </li>
+              ))}
             </ul>
           </div>
         )}
