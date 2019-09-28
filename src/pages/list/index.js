@@ -106,6 +106,21 @@ const List = ({ history, firestore }) => {
     setMatches([]);
   };
 
+  const colorCodeByFrequency = item => {
+    if (identifyInactiveItems(item)) return {};
+
+    switch (item.frequencyId) {
+      case 0:
+        return { backgroundColor: 'rgb(151, 245, 151, .8)' };
+      case 1:
+        return { backgroundColor: 'rgb(252, 252, 116, .8)' };
+      case 2:
+        return { backgroundColor: 'rgb(249, 120, 120, .8)' };
+      default:
+        return {};
+    }
+  };
+
   return (
     <PageWrapper>
       <Header />
@@ -130,20 +145,7 @@ const List = ({ history, firestore }) => {
             <ul id="mylist">
               {(matches.length ? matches : filterInput === '' ? list : []).map(
                 (item, index) => (
-                  <li
-                    key={'item-' + index}
-                    className={
-                      identifyInactiveItems(item)
-                        ? ''
-                        : item.frequencyId === 0
-                        ? 'green'
-                        : item.frequencyId === 1
-                        ? 'yellow'
-                        : item.frequencyId === 2
-                        ? 'red'
-                        : null
-                    }
-                  >
+                  <li key={'item-' + index} style={colorCodeByFrequency(item)}>
                     <style>
                       {`
                   .green {
