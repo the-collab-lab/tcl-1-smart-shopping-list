@@ -12,6 +12,7 @@ import {
 } from '../../components';
 import {
   frequencyOptions,
+  displayFrequency,
   sortOnFrequencyAndActivity,
   identifyInactiveItems,
 } from '../../lib/frequency';
@@ -160,12 +161,7 @@ const List = ({ history, firestore }) => {
                       className="item-detail-link"
                       routeTo="/item-detail"
                     >
-                      {item.name +
-                        (item.frequencyId > -1
-                          ? ' (' +
-                            frequencyOptions[item.frequencyId].display +
-                            ') '
-                          : null)}
+                      {item.name + displayFrequency(item)}
                     </SmartLink>
                   </li>
                 )

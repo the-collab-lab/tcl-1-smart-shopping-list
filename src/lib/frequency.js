@@ -53,4 +53,17 @@ const identifyInactiveItems = item => {
   return false;
 };
 
-export { frequencyOptions, sortOnFrequencyAndActivity, identifyInactiveItems };
+const displayFrequency = item => {
+  if (frequencyOptions[item.frequencyId])
+    return ' (' + frequencyOptions[item.frequencyId].display + ')';
+  // else if frequencyId is not one of the expected frequencyOptions, don't
+  // assign it a display frequency
+  return '';
+};
+
+export {
+  frequencyOptions,
+  displayFrequency,
+  sortOnFrequencyAndActivity,
+  identifyInactiveItems,
+};
