@@ -24,6 +24,36 @@ const frequencyOptions = [
 
 const getStartOfDay = date => moment(date || undefined).startOf('day');
 
+// NOTE: this could be updated once we add item editing. The same edit logic
+// could be used here to update the DB data structures so that in the future
+// each list item passes in the first if check below instead of having to run
+// through the full matchedOption function.
+const backwardCompatibleFreqId = list => {
+  return list.map(item => {
+    // if item has the frequencyId property, check to make sure it matches
+    // one of our options, if so, that item is up to date and doesn't need
+    // to be converted from an earlier format
+    const fid = item.frequencyId;
+    if (fid > -1 && !!frequencyOptions[fid]) return item;
+
+    // else if item doesn't have the frequencyId property, we'll look to the
+    // old frequency property and "shim" the item to use the matching frequency
+    // option if found, otherwise show the default of frequencyOptions[0]
+    // const modernizeFreqInfo = item => {
+    const matchedOption = frequencyOptions.find(option => {
+      const allDashes = new RegExp('-', 'g');
+      const lcOption = option.display.toLowerCase();
+      // NOTE: replacing instances of '-' with ' ' via global (see 'g') RegExp.
+      // simply using .replace('-', ' ') only replaces the first instance of '-'
+      const lcNormFreq = item.frequency.replace(allDashes, ' ').toLowerCase();
+      return lcOption === lcNormFreq;
+    });
+
+    if (matchedOption) return { ...item, ...{ frequencyId: matchedOption.id } };
+    return false;
+  });
+};
+
 // NOTE: item considered inactive once it reaches 2n days past due where n
 // equals it's previous frequency value's maximum end of the range
 const sortOnFrequencyAndActivity = list => {
@@ -64,6 +94,7 @@ const displayFrequency = item => {
 export {
   frequencyOptions,
   displayFrequency,
+  backwardCompatibleFreqId,
   sortOnFrequencyAndActivity,
   identifyInactiveItems,
 };
