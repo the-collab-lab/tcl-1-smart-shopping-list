@@ -67,7 +67,6 @@ const displayFrequency = item => {
 export {
   frequencyOptions,
   displayFrequency,
-  backwardCompatibleFreqId,
   sortOnFrequencyAndActivity,
   identifyInactiveItems,
 };
