@@ -9,10 +9,8 @@ exports[`snapshot on load 1`] = `
       No purchases just yet.
     </p>
     <a
-      className="add-item-link css-gq9b4g"
       href="/add-item"
       onClick={[Function]}
-      visualstate="default"
     >
       Add Item
     </a>

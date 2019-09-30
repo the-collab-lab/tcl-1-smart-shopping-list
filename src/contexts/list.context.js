@@ -34,8 +34,7 @@ const ListProvider = ({ children }) => {
   const setListValue = newList => {
     setList(prev => {
       const prevList = { ...prev };
-      const merged = { ...prevList, ...{ list: newList } };
-      return merged;
+      return { ...prevList, ...{ list: newList } };
     });
   };
 
