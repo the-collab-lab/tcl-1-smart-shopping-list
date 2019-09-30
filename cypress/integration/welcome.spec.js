@@ -12,7 +12,7 @@ describe('Welcome prompt displays when there are no list items', function() {
     // click the create shopping list button
     cy.get('.create-list-link').click();
     // redirect to the list page
-    cy.get('section > .add-item-link').contains('Add Item');
+    cy.get('section > a').contains('Add Item');
   });
 
   it('page redirect to add item page when welcome button is clicked', function() {
@@ -20,7 +20,7 @@ describe('Welcome prompt displays when there are no list items', function() {
     // click the create shopping list button
     cy.get('.create-list-link').click();
     // redirect to the add item page
-    cy.get('section > .add-item-link').click();
+    cy.get('section > a').click();
     cy.url().should('include', 'http://localhost:3000/add-item');
   });
 
@@ -29,7 +29,7 @@ describe('Welcome prompt displays when there are no list items', function() {
     // click the create shopping list button
     cy.get('.create-list-link').click();
     // redirect to the add item page
-    cy.get('section > .add-item-link').click();
+    cy.get('section > a').click();
     cy.get('#name').type("test item");
     cy.get('button').click();
     cy.get('.list-link').click();
