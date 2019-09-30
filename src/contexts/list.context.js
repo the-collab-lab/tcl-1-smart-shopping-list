@@ -1,6 +1,5 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { backwardCompatibleFreqId } from '../lib/frequency';
 
 const ListContext = createContext({
   value: [],
@@ -35,7 +34,7 @@ const ListProvider = ({ children }) => {
   const setListValue = newList => {
     setList(prev => {
       const prevList = { ...prev };
-      return { ...prevList, ...{ list: backwardCompatibleFreqId(newList) } };
+      return { ...prevList, ...{ list: newList } };
     });
   };
 
