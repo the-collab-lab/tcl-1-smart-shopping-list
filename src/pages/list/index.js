@@ -128,10 +128,7 @@ const List = ({ history, firestore }) => {
     }
   };
 
-  const setPurchaseDate = () => {
-    const purchaseDate = Date.now();
-    console.log('purchaseDate:', purchaseDate);
-  };
+  const purchaseHistory = [];
 
   return (
     <PageWrapper>
@@ -176,7 +173,16 @@ const List = ({ history, firestore }) => {
                   >
                     {item.name + displayFrequency(item)}
                   </SmartLink>
-                  <button className="itemPurchased" onClick={setPurchaseDate}>
+                  <button
+                    className="itemPurchased"
+                    onClick={() => {
+                      const purchaseDate = Date.now();
+                      purchaseHistory.push(purchaseDate);
+                      console.log('purchaseDate:', purchaseDate);
+                      console.log('item:', item.purchaseDate);
+                      console.log('purchaseHistory:', purchaseHistory);
+                    }}
+                  >
                     Purchased
                   </button>
                 </li>
