@@ -85,6 +85,7 @@ const AddItem = ({ history, firestore }) => {
     const dupeIfFound = dbList.find(
       item => item.name.toLowerCase() === name.toLowerCase()
     );
+    console.log('dblist:', dbList);
     dupeIfFound ? setMatchState(true) : triggerSendToFirebase();
   };
 
