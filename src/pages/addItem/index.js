@@ -101,7 +101,7 @@ const AddItem = ({ history, firestore }) => {
       frequencyId,
       listToken: token,
       dateAdded: Date.now(),
-      purchaseDate: Date.now(),
+      purchaseDate: null,
       purchaseHistory: [],
     });
   };

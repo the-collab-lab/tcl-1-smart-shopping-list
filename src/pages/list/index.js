@@ -116,6 +116,13 @@ const List = ({ history, firestore }) => {
   const colorCodeByFrequency = item => {
     if (identifyInactiveItems(item)) return {};
 
+    // console.log('date now', Date.now(), 'item.purchasedate', item.purchaseDate);
+    if (Date.now() - item.purchaseDate < 86400000) {
+      console.log('less than 24 hours');
+      // return {
+      //   text-decoration: line-through
+      // };
+    }
     switch (item.frequencyId) {
       case 0:
         return { backgroundColor: 'rgb(151, 245, 151, .8)' };
