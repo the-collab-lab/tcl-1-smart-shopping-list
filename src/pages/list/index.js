@@ -177,10 +177,10 @@ const List = ({ history, firestore }) => {
                     className="itemPurchased"
                     onClick={() => {
                       const purchaseDate = Date.now();
+                      item.purchaseDate = purchaseDate;
                       console.log('item: ', item);
+                      console.log('new purchase date:', item.purchaseDate);
                       item.purchaseHistory.push(purchaseDate);
-                      console.log('item:', item.purchaseDate);
-                      // console.log('purchaseHistory:', purchaseHistory);
                     }}
                   >
                     Purchased
