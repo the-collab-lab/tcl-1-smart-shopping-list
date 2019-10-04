@@ -128,7 +128,7 @@ const List = ({ history, firestore }) => {
     }
   };
 
-  const purchaseHistory = [];
+  // const purchaseHistory = [];
 
   return (
     <PageWrapper>
@@ -177,10 +177,10 @@ const List = ({ history, firestore }) => {
                     className="itemPurchased"
                     onClick={() => {
                       const purchaseDate = Date.now();
-                      purchaseHistory.push(purchaseDate);
-                      console.log('purchaseDate:', purchaseDate);
+                      console.log('item: ', item);
+                      item.purchaseHistory.push(purchaseDate);
                       console.log('item:', item.purchaseDate);
-                      console.log('purchaseHistory:', purchaseHistory);
+                      // console.log('purchaseHistory:', purchaseHistory);
                     }}
                   >
                     Purchased

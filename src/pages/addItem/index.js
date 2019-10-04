@@ -102,6 +102,7 @@ const AddItem = ({ history, firestore }) => {
       listToken: token,
       dateAdded: Date.now(),
       purchaseDate: Date.now(),
+      purchaseHistory: [],
     });
   };
 
