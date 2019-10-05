@@ -39,10 +39,9 @@ const ListProvider = ({ children }) => {
   };
 
   const editListItem = (ogList, ogItem, updatedItem) => {
-    const newItem = { ...ogItem, ...updatedItem };
-    const newList = [...ogList, ...[newItem]];
-    console.log({ newItem, newList });
-    // setListValue(newList)
+    const ogItemIndex = ogList.indexOf(ogItem);
+    ogList.splice(ogItemIndex, 1, updatedItem);
+    setListValue(ogList);
   };
 
   // NOTE: this is where we're passing the init/reset values to our fancy

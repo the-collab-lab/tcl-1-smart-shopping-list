@@ -174,7 +174,7 @@ const List = ({ history, firestore }) => {
                       item.purchaseDate = purchaseDate;
                       console.log('item: ', item);
                       console.log('new purchase date:', item.purchaseDate);
-                      const purchaseHistory = [];
+                      const purchaseHistory = item.purchaseHistory;
                       purchaseHistory.push(purchaseDate);
                       const updatedItem = {
                         ...item,
