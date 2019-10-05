@@ -116,13 +116,13 @@ const List = ({ history, firestore }) => {
   const colorCodeByFrequency = item => {
     if (identifyInactiveItems(item)) return {};
 
-    // console.log('date now', Date.now(), 'item.purchasedate', item.purchaseDate);
     if (Date.now() - item.purchaseDate < 86400000) {
       console.log('less than 24 hours');
-      // return {
-      //   text-decoration: line-through
-      // };
+      return {
+        textDecoration: 'line-through',
+      };
     }
+
     switch (item.frequencyId) {
       case 0:
         return { backgroundColor: 'rgb(151, 245, 151, .8)' };
@@ -161,19 +161,6 @@ const List = ({ history, firestore }) => {
             <ul id="mylist">
               {whichList().map((item, index) => (
                 <li key={'item-' + index} style={colorCodeByFrequency(item)}>
-                  <style>
-                    {`
-                  .green {
-                    background-color: rgb(151, 245, 151, .8);
-                  }
-                  .yellow {
-                    background-color: rgb(252, 252, 116, .8);
-                  }
-                  .red {
-                    background-color: rgb(249, 120, 120, .8);
-                  }
-                `}
-                  </style>
                   <SmartLink
                     className="item-detail-link"
                     routeTo="/item-detail"
