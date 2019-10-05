@@ -28,7 +28,7 @@ const List = ({ history, firestore }) => {
   //   const setTokenValue = useContext(TokenContext).setTokenValue;
   //   const confirmToken = useContext(TokenContext).confirmToken;
   const { token } = useContext(TokenContext);
-  const { list, setListValue } = useContext(ListContext);
+  const { list, setListValue, editListItem } = useContext(ListContext);
 
   // NOTE: setting this particular component's private loading, userInput, and matches states
   const [loading, setLoading] = useState(true);
@@ -174,7 +174,13 @@ const List = ({ history, firestore }) => {
                       item.purchaseDate = purchaseDate;
                       console.log('item: ', item);
                       console.log('new purchase date:', item.purchaseDate);
-                      item.purchaseHistory.push(purchaseDate);
+                      const purchaseHistory = [];
+                      purchaseHistory.push(purchaseDate);
+                      const updatedItem = {
+                        ...item,
+                        ...{ item: { purchaseHistory: purchaseHistory } },
+                      };
+                      editListItem(list, item, updatedItem);
                     }}
                   >
                     Purchased
