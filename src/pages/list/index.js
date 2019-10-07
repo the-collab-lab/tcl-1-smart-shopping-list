@@ -117,7 +117,6 @@ const List = ({ history, firestore }) => {
     if (identifyInactiveItems(item)) return {};
 
     if (Date.now() - item.purchaseDate < 86400000) {
-      console.log('less than 24 hours');
       return {
         textDecoration: 'line-through',
       };
@@ -172,8 +171,6 @@ const List = ({ history, firestore }) => {
                     onClick={() => {
                       const purchaseDate = Date.now();
                       item.purchaseDate = purchaseDate;
-                      console.log('item: ', item);
-                      console.log('new purchase date:', item.purchaseDate);
                       const purchaseHistory = item.purchaseHistory;
                       purchaseHistory.push(purchaseDate);
                       const updatedItem = {

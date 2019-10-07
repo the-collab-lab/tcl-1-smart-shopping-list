@@ -33,8 +33,6 @@ const AddItem = ({ history, firestore }) => {
   // NOTE: local state gives the value a place to live before we officially add them to the
   // app "state" (in the ListContext)
   const [name, setName] = useState('');
-  //TODO do I need purchaseDate hooks?
-  // const [purchaseDate, setPurchaseDate] = useState('');
   const [frequencyId, setFrequencyId] = useState(frequencyOptions[0].id);
 
   // NOTE: users won't have a list to view or add items to if they don't have a token, so
@@ -87,7 +85,6 @@ const AddItem = ({ history, firestore }) => {
     const dupeIfFound = dbList.find(
       item => item.name.toLowerCase() === name.toLowerCase()
     );
-    console.log('dblist:', dbList);
     dupeIfFound ? setMatchState(true) : triggerSendToFirebase();
   };
 
