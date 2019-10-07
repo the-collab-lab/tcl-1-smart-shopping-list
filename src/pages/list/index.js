@@ -28,7 +28,7 @@ const List = ({ history, firestore }) => {
   //   const setTokenValue = useContext(TokenContext).setTokenValue;
   //   const confirmToken = useContext(TokenContext).confirmToken;
   const { token } = useContext(TokenContext);
-  const { list, setListValue } = useContext(ListContext);
+  const { list, setListValue, editListItem } = useContext(ListContext);
 
   // NOTE: setting this particular component's private loading, userInput, and matches states
   const [loading, setLoading] = useState(true);
@@ -116,6 +116,12 @@ const List = ({ history, firestore }) => {
   const colorCodeByFrequency = item => {
     if (identifyInactiveItems(item)) return {};
 
+    if (Date.now() - item.purchaseDate < 86400000) {
+      return {
+        textDecoration: 'line-through',
+      };
+    }
+
     switch (item.frequencyId) {
       case 0:
         return { backgroundColor: 'rgb(151, 245, 151, .8)' };
@@ -127,6 +133,8 @@ const List = ({ history, firestore }) => {
         return {};
     }
   };
+
+  // const purchaseHistory = [];
 
   return (
     <PageWrapper>
@@ -152,25 +160,28 @@ const List = ({ history, firestore }) => {
             <ul id="mylist">
               {whichList().map((item, index) => (
                 <li key={'item-' + index} style={colorCodeByFrequency(item)}>
-                  <style>
-                    {`
-                  .green {
-                    background-color: rgb(151, 245, 151, .8);
-                  }
-                  .yellow {
-                    background-color: rgb(252, 252, 116, .8);
-                  }
-                  .red {
-                    background-color: rgb(249, 120, 120, .8);
-                  }
-                `}
-                  </style>
                   <SmartLink
                     className="item-detail-link"
                     routeTo="/item-detail"
                   >
                     {item.name + displayFrequency(item)}
                   </SmartLink>
+                  <button
+                    className="itemPurchased"
+                    onClick={() => {
+                      const purchaseDate = Date.now();
+                      item.purchaseDate = purchaseDate;
+                      const purchaseHistory = item.purchaseHistory;
+                      purchaseHistory.push(purchaseDate);
+                      const updatedItem = {
+                        ...item,
+                        ...{ item: { purchaseHistory: purchaseHistory } },
+                      };
+                      editListItem(list, item, updatedItem);
+                    }}
+                  >
+                    Purchased
+                  </button>
                 </li>
               ))}
             </ul>

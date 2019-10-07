@@ -38,9 +38,15 @@ const ListProvider = ({ children }) => {
     });
   };
 
+  const editListItem = (ogList, ogItem, updatedItem) => {
+    const ogItemIndex = ogList.indexOf(ogItem);
+    ogList.splice(ogItemIndex, 1, updatedItem);
+    setListValue(ogList);
+  };
+
   // NOTE: this is where we're passing the init/reset values to our fancy
   // new ListProvider "wrapper" component
-  const listValueReset = { list: [], setListValue };
+  const listValueReset = { list: [], setListValue, editListItem };
 
   // NOTE: under the hood it's really just a useState hook  with some
   // extra features managing the state of our application.
