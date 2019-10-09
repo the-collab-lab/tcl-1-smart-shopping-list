@@ -42,11 +42,18 @@ const identifyInactiveItems = item => {
 
 // NOTE: item considered inactive once it reaches 2n days past due where n
 // equals it's previous frequency value's maximum end of the range
-const sortOnFrequencyAndActivity = list => {
+const sortOnPurchaseStateAndFrequencyAndActivity = list => {
   return list.sort((a, b) => {
     // NOTE: first we'll look for in active items, those FOR SURE should appear
     // at the bottom of the list
-    if (identifyInactiveItems(a) < identifyInactiveItems(b)) return -1;
+    const lpd = a.lastPurchasedDate ? moment(a.lastPurchasedDate) : null;
+    const purchasedWithin24Hours = lpd
+      ? lpd.diff(moment(), 'hours') < 24
+      : null;
+
+    // NOTE: this sorts purchased items to the bottom of the list of items with
+    // the same frequency
+    if (purchasedWithin24Hours) return -1;
     if (identifyInactiveItems(a) > identifyInactiveItems(b)) return 1;
     // NOTE: then, if neither item is identified as inactive, sort on frequencyId
     if (a.frequencyId < b.frequencyId) return -1;
@@ -67,6 +74,6 @@ const displayFrequency = item => {
 export {
   frequencyOptions,
   displayFrequency,
-  sortOnFrequencyAndActivity,
+  sortOnPurchaseStateAndFrequencyAndActivity,
   identifyInactiveItems,
 };

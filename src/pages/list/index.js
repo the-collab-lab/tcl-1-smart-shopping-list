@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withFirestore } from 'react-firestore';
+import moment from 'moment';
 import { TokenContext, ListContext } from '../../contexts';
 import {
   ContentWrapper,
@@ -12,10 +13,11 @@ import {
 } from '../../components';
 import {
   displayFrequency,
-  sortOnFrequencyAndActivity,
+  sortOnPurchaseStateAndFrequencyAndActivity,
   identifyInactiveItems,
 } from '../../lib/frequency';
 import Welcome from '../../components/welcome';
+import calculateHistory from '../../lib/puchaseHistory';
 
 const List = ({ history, firestore }) => {
   // NOTE: the line below is a destructuring declaration, which gives us a more concise way of
@@ -28,7 +30,7 @@ const List = ({ history, firestore }) => {
   //   const setTokenValue = useContext(TokenContext).setTokenValue;
   //   const confirmToken = useContext(TokenContext).confirmToken;
   const { token } = useContext(TokenContext);
-  const { list, setListValue, editListItem } = useContext(ListContext);
+  const { list, setListValue, saveUpdatedListItem } = useContext(ListContext);
 
   // NOTE: setting this particular component's private loading, userInput, and matches states
   const [loading, setLoading] = useState(true);
@@ -54,7 +56,9 @@ const List = ({ history, firestore }) => {
         .where('listToken', '==', token)
         .get()
         .then(response => {
-          const items = response.docs.map(doc => doc.data());
+          const items = response.docs.map(doc => {
+            return { ...doc.data(), ...{ id: doc.id } };
+          });
           sortAndSaveList(items);
         })
         .catch(error => {
@@ -64,11 +68,42 @@ const List = ({ history, firestore }) => {
     }
   };
 
+  const handleItemPurchase = item => {
+    const uid = item.id;
+    const calculatedItem = calculateHistory(item);
+    updateListItem(uid, calculatedItem);
+  };
+
+  const updateListItem = (uid, item) => {
+    setLoading(true);
+    firestore
+      .collection('items')
+      .doc(uid)
+      .update({
+        lastInterval: item.newInterval,
+        lastPurchaseDate: item.newPurchasedDate,
+        lastEstimate: item.newEstimate,
+        numberOfPurchases: item.newNumberOfPurchases,
+        nextEstimatedPurchaseDate: item.nextEstimatedPurchaseDate,
+      })
+      .then(function() {
+        // NOTE: from what i can tell the functions inside ListContext don't have
+        // access to the current "state" of the list value, so it does have to be
+        // passed in...for now, until i figure out something else.
+        const updatedList = saveUpdatedListItem(uid, item, list);
+        sortAndSaveList(updatedList);
+      })
+      .catch(function(error) {
+        // The document probably doesn't exist.
+        console.error('Error updating document: ', error);
+      });
+  };
+
   // NOTE: retrieves the sorted list back based on (1) if it's inactive it automatically goes
   // to the bottom of the list and gets no background color, and (2) if it's active, sort by
   // frequency category -- soonest at the top
   const sortAndSaveList = list => {
-    const sortedList = sortOnFrequencyAndActivity(list);
+    const sortedList = sortOnPurchaseStateAndFrequencyAndActivity(list);
     setListValue(sortedList);
     setLoading(false);
   };
@@ -114,7 +149,22 @@ const List = ({ history, firestore }) => {
   };
 
   const colorCodeByFrequency = item => {
+    const now = moment(Date.now());
+    // NOTE: check to make sure item.lastPurchaseDate is "truthy" (aka not null or undefined)
+    // before we pass it to moment, passing null gets flagged as an invalid date BUT passing
+    // undefined into moment returns the same as Date.now() because moment sees it as the same
+    // as calling moment() to get current date/time.
+    const lpd = item.lastPurchaseDate ? moment(item.lastPurchaseDate) : null;
+    const purchasedWithin24Hours = lpd ? lpd.diff(now, 'hours') < 24 : null;
+
     if (identifyInactiveItems(item)) return {};
+    if (purchasedWithin24Hours) return { textDecoration: 'line-through' };
+
+    if (Date.now() - item.purchaseDate < 86400000) {
+      return {
+        textDecoration: 'line-through',
+      };
+    }
 
     if (Date.now() - item.purchaseDate < 86400000) {
       return {
@@ -134,7 +184,17 @@ const List = ({ history, firestore }) => {
     }
   };
 
-  // const purchaseHistory = [];
+  const displayNextEstimatedPurchaseDate = item => {
+    console.log({ nepd: item.nextEstimatedPurchaseDate });
+    if (item.nextEstimatedPurchaseDate)
+      return (
+        <span>
+          next estimated purchase date:{' '}
+          {moment(item.nextEstimatedPurchaseDate).format('MMM DD YYYY')}
+        </span>
+      );
+    else return null;
+  };
 
   return (
     <PageWrapper>
@@ -160,28 +220,21 @@ const List = ({ history, firestore }) => {
             <ul id="mylist">
               {whichList().map((item, index) => (
                 <li key={'item-' + index} style={colorCodeByFrequency(item)}>
+                  <button
+                    className="itemPurchased"
+                    onClick={() => handleItemPurchase(item)}
+                  >
+                    Purchase
+                  </button>
+                  &nbsp;
                   <SmartLink
                     className="item-detail-link"
                     routeTo="/item-detail"
                   >
                     {item.name + displayFrequency(item)}
                   </SmartLink>
-                  <button
-                    className="itemPurchased"
-                    onClick={() => {
-                      const purchaseDate = Date.now();
-                      item.purchaseDate = purchaseDate;
-                      const purchaseHistory = item.purchaseHistory;
-                      purchaseHistory.push(purchaseDate);
-                      const updatedItem = {
-                        ...item,
-                        ...{ item: { purchaseHistory: purchaseHistory } },
-                      };
-                      editListItem(list, item, updatedItem);
-                    }}
-                  >
-                    Purchased
-                  </button>
+                  &nbsp;
+                  {displayNextEstimatedPurchaseDate(item)}
                 </li>
               ))}
             </ul>

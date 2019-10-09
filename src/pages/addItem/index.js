@@ -39,6 +39,15 @@ const AddItem = ({ history, firestore }) => {
   // "push" them to where they can get started
   if (!token) history.push('/create-list');
 
+  const updateMatchStateText = () => {
+    if (loading) return <Loading />;
+    if (matchState === true)
+      return <p className="itemFeedback">Item already exists!</p>;
+    if (matchState === false)
+      return <p className="itemFeedback">Adding item!</p>;
+    return null;
+  };
+
   const handleTextChange = event => {
     setName(event.target.value);
     setMatchState(null);
@@ -71,7 +80,9 @@ const AddItem = ({ history, firestore }) => {
           // NOTE: we need to normalize this "list", the info coming back from the db comes back with response.doc
           // as a list, BUT each of the items in the list needs to be "unpacked" by running .data() on it (hence
           // where the item.data().name stuff came from earlier in our debugging)
-          const normalizedList = response.docs.map(doc => doc.data());
+          const normalizedList = response.docs.map(doc => {
+            return { ...doc.data(), ...{ id: doc.id } };
+          });
           setListValue(normalizedList);
           checkForDupes(normalizedList);
         })
@@ -98,8 +109,11 @@ const AddItem = ({ history, firestore }) => {
       frequencyId,
       listToken: token,
       dateAdded: Date.now(),
-      purchaseDate: null,
-      purchaseHistory: [],
+      lastInterval: null,
+      lastPurchaseDate: null,
+      lastEstimate: null,
+      nextEstimatedPurchaseDate: null,
+      numberOfPurchases: 0,
     });
   };
 
@@ -124,7 +138,6 @@ const AddItem = ({ history, firestore }) => {
       <Header />
 
       <ContentWrapper>
-        {loading && <Loading />}
         <form className="form-example" onSubmit={handleSubmit}>
           <label>
             Add Item:
@@ -150,11 +163,7 @@ const AddItem = ({ history, firestore }) => {
               {option.display}
             </label>
           ))}
-          {matchState === true ? (
-            <p className="itemFeedback">Item already exists!</p>
-          ) : matchState === false ? (
-            <p className="itemFeedback">Adding item!</p>
-          ) : null}
+          {updateMatchStateText()}
           <button type="submit">Add item</button>
         </form>
       </ContentWrapper>
@@ -165,7 +174,6 @@ const AddItem = ({ history, firestore }) => {
 };
 
 export default withFirestore(AddItem);
-//DONE 4 (skip: doing #1 instead) add export for frequency options array, instead we'll import it at the top of the file
 
 AddItem.propTypes = {
   history: PropTypes.object.isRequired,
