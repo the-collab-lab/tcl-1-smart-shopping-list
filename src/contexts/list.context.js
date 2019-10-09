@@ -38,15 +38,32 @@ const ListProvider = ({ children }) => {
     });
   };
 
-  const editListItem = (ogList, ogItem, updatedItem) => {
-    const ogItemIndex = ogList.indexOf(ogItem);
-    ogList.splice(ogItemIndex, 1, updatedItem);
-    setListValue(ogList);
+  const saveUpdatedListItem = (uid, purchasedItem, listState) => {
+    // NOTE: find index of the "old" version of purchasedItem
+    const itemIndex = listState.findIndex((item, index) => {
+      return item.id === uid ? index : false;
+    });
+
+    // NOTE: merge the two items, overwritting "old" values with the updated values
+    const updatedItem = {
+      ...listState[itemIndex],
+      ...{
+        lastEstimate: purchasedItem.newEstimate,
+        lastInterval: purchasedItem.newInterval,
+        numberOfPurchases: purchasedItem.newNumberOfPurchases,
+        lastPurchaseDate: purchasedItem.newPurchasedDate,
+        nextEstimatedPurchaseDate: purchasedItem.nextEstimatedPurchaseDate,
+      },
+    };
+
+    // NOTE: swap out to the "old" item with updatedItem and return the list
+    listState.splice(itemIndex, 1, updatedItem);
+    return listState;
   };
 
   // NOTE: this is where we're passing the init/reset values to our fancy
   // new ListProvider "wrapper" component
-  const listValueReset = { list: [], setListValue, editListItem };
+  const listValueReset = { list: [], setListValue, saveUpdatedListItem };
 
   // NOTE: under the hood it's really just a useState hook  with some
   // extra features managing the state of our application.
