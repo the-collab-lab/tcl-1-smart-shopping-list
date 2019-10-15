@@ -1,15 +1,35 @@
-import React from 'react';
-import { ContentWrapper, Footer, Header, PageWrapper } from '../../components';
-import { FirestoreDocument } from 'react-firestore';
-import Loading from '../../components/loading';
+import React, { useState } from 'react';
+import { ContentWrapper, Footer, Header, PageWrapper, Loading } from '../../components';
+import { withFirestore, FirestoreDocument } from 'react-firestore';
 import moment from 'moment';
 
-const ItemDetail = ({ match }) => {
+const ItemDetail = ({ firestore, match, history }) => {
   // When a route matching /item-detail/:itemId is hit,
   // that :itemId becomes available in props.match.params.itemId
   const { itemId } = match.params;
 
-  // TODO: Handle when there is no date data. Moment returns "Invalid Date".
+  const deleteItemFromFirestore = itemId => {
+    firestore
+      .collection('items')
+      .doc(itemId)
+      .delete()
+      .then(function() {
+        console.log('Document successfully deleted!');
+      })
+      .catch(function(error) {
+        console.error('Error removing document: ', error);
+      });
+  };
+
+  const handleDeleteClick = () => {
+    const confirmDeleteClick = window.confirm(
+      'Are you sure you want to delete?'
+    );
+    return confirmDeleteClick
+      ? (deleteItemFromFirestore(itemId), history.push('/'))
+      : null;
+  };
+
   return (
     <PageWrapper>
       <Header showBackLink={true} />
@@ -31,11 +51,11 @@ const ItemDetail = ({ match }) => {
             );
           }}
         />
-
+        <button onClick={handleDeleteClick}>Delete</button>
       </ContentWrapper>
       <Footer />
     </PageWrapper>
   );
 };
 
-export default ItemDetail;
+export default withFirestore(ItemDetail);

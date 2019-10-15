@@ -125,6 +125,8 @@ const AddItem = ({ history, firestore }) => {
       .add(item)
       .then(response => {
         const merged = [...list, ...[item]];
+        // When we add this item to the merge list locally, we need to include the id from the doc store.
+        console.log('merged item:', item);
         setListValue(merged);
         setName('');
         setFrequencyId(frequencyOptions[0].id);
