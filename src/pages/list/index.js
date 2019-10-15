@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { withFirestore } from 'react-firestore';
 import moment from 'moment';
 import { TokenContext, ListContext } from '../../contexts';
+import { Link } from 'react-router-dom';
 import {
   ContentWrapper,
   Footer,
   Header,
   Loading,
   PageWrapper,
-  SmartLink,
 } from '../../components';
 import {
   displayFrequency,
@@ -185,7 +185,6 @@ const List = ({ history, firestore }) => {
   };
 
   const displayNextEstimatedPurchaseDate = item => {
-    console.log({ nepd: item.nextEstimatedPurchaseDate });
     if (item.nextEstimatedPurchaseDate)
       return (
         <span>
@@ -199,7 +198,6 @@ const List = ({ history, firestore }) => {
   return (
     <PageWrapper>
       <Header />
-
       <ContentWrapper>
         {loading && <Loading />}
 
@@ -226,15 +224,9 @@ const List = ({ history, firestore }) => {
                   >
                     Purchase
                   </button>
-                  &nbsp;
-                  <SmartLink
-                    className="item-detail-link"
-                    routeTo="/item-detail"
-                  >
-                    {item.name + displayFrequency(item)}
-                  </SmartLink>
-                  &nbsp;
-                  {displayNextEstimatedPurchaseDate(item)}
+                  <Link to={`/item-detail/${item.id}`}>
+                    {`${item.name} ${displayFrequency(item)}`}
+                  </Link>
                 </li>
               ))}
             </ul>
