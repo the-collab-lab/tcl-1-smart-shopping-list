@@ -110,7 +110,7 @@ const AddItem = ({ history, firestore }) => {
       listToken: token,
       dateAdded: Date.now(),
       lastInterval: null,
-      lastPurchaseDate: null,
+      lastPurchaseDate: Date.now(),
       lastEstimate: null,
       nextEstimatedPurchaseDate: null,
       numberOfPurchases: 0,

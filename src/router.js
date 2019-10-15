@@ -12,7 +12,7 @@ const Router = props => {
     { view: AddItem, path: '/add-item' },
     { view: CreateList, path: '/create-list' },
     { view: JoinList, path: '/join-list' },
-    { view: ItemDetail, path: '/item-detail' },
+    { view: ItemDetail, path: '/item-detail/:itemId' },
     { view: List, path: undefined },
     // NOTE: by not passing a path to the List component, this
     // becomes the default path for any unrecognized URLs. BUT
