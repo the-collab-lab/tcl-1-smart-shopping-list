@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { ContentWrapper, Footer, Header, PageWrapper, Loading } from '../../components';
+import {
+  ContentWrapper,
+  Footer,
+  Header,
+  PageWrapper,
+  Loading,
+} from '../../components';
 import { withFirestore, FirestoreDocument } from 'react-firestore';
 import moment from 'moment';
 
@@ -44,8 +50,20 @@ const ItemDetail = ({ firestore, match, history }) => {
                 <h1>{data.name}</h1>
                 <ul>
                   <li>Number of purchases: {data.numberOfPurchases}</li>
-                  <li>Last purchase: {moment(data.lastPurchaseDate).format('MMM DD YYYY')}</li>
-                  <li>Next purchase: {moment(data.nextEstimatedPurchaseDate).format('MMM DD YYYY')}</li>
+                  <li>
+                    Last purchase:{' '}
+                    {data.lastPurchaseDate
+                      ? moment(data.lastPurchaseDate).format('MMM DD YYYY')
+                      : 'No last purchase date'}
+                  </li>
+                  <li>
+                    Next purchase:{' '}
+                    {data.lastPurchaseDate
+                      ? moment(data.nextEstimatedPurchaseDate).format(
+                          'MMM DD YYYY'
+                        )
+                      : 'No estimate yet'}
+                  </li>
                 </ul>
               </>
             );
