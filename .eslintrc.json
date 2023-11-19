@@ -16,7 +16,10 @@
     "sourceType": "module"
   },
   "plugins": ["react", "jsx-a11y"],
-  "rules": {},
+  "rules": {
+    "react/prop-types": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["visualstate"] }]
+  },
   "settings": {
     "react": {
       "version": "detect" // React version. "detect" automatically picks the version you have installed.
