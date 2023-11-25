@@ -7,6 +7,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.17",
     "@emotion/styled": "^10.0.17",
+    "cross-env": "^7.0.3",
     "emotion": "^10.0.17",
     "firebase": "^10.6.0",
     "moment": "^2.24.0",
