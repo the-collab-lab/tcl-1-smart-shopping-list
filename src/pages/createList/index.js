@@ -9,7 +9,7 @@ import {
   PageWrapper,
 } from '../../components';
 import { TokenContext } from '../../contexts';
-import getToken from '../../lib/token';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 
 const CreateList = ({ history, firestore }) => {
   // NOTE: the line below is a destructuring declaration, which gives us a more concise way of
@@ -29,27 +29,28 @@ const CreateList = ({ history, firestore }) => {
   // NOTE: the only functionality in this component currently is the ability to get AND set
   // a new token if a user doesn't have one stashed away in localStorage.
   const handleClick = () => {
-    setLoading(true);
+    // setLoading(true);
 
-    const newToken = getToken();
-    setTokenValue(newToken);
+    // const newToken = 'the collab lab';
+    // setTokenValue(newToken);
 
-    firestore
-      .collection('lists')
-      .doc(newToken)
-      .set({ date: Date.now() })
-      .then(() => {
-        // NOTE: if this setting of the new token succeeds, we should save the user clicks and
-        // "push" them to the list view
-        setLoading(false);
-        history.push('/');
-      })
-      .catch(error => {
-        setLoading(false);
-        console.error('Error getting documents: ', error);
-      });
+    // firestore
+    //   .collection('lists')
+    //   .doc(newToken)
+    //   .set({ date: Date.now() })
+    //   .then(() => {
+    // NOTE: if this setting of the new token succeeds, we should save the user clicks and
+    // "push" them to the list view
+    //   setLoading(false);
+    //   history.push('/');
+    // })
+    // .catch((error) => {
+    //   setLoading(false);
+    //   console.error('Error getting documents: ', error);
+    // });
     // NOTE: we can't update loading state in the .finally() after the .catch() in this case,
     // otherwise React throws an error if we try to set it after history.push'
+    console.log('Creating new lists is no longer supported.');
   };
 
   return (
@@ -65,11 +66,13 @@ const CreateList = ({ history, firestore }) => {
         <button className="create-list-link" onClick={handleClick}>
           Create Shopping List
         </button>
-        <p>You can also <a href="/join-list">join an existing shopping list</a>.</p>
-
+        <p>
+          You can also <a href="/join-list">join an existing shopping list</a>.
+        </p>
       </ContentWrapper>
 
       <Footer />
+      <ArchivalNoticeModal />
     </PageWrapper>
   );
 };

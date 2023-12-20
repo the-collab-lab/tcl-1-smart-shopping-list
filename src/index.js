@@ -7,11 +7,12 @@ import { FirestoreProvider } from 'react-firestore';
 import App from './app';
 import './index.css';
 
-ReactDOM.render(
+const rootElement = document.getElementById('root');
+
+ReactDOM.createRoot(rootElement).render(
   <FirestoreProvider firebase={firebase}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </FirestoreProvider>,
-  document.getElementById('root')
+  </FirestoreProvider>
 );
